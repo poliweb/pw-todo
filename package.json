@@ -1,0 +1,23 @@
+{
+  "name": "pw-todo",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview --port 5050"
+  },
+  "dependencies": {
+    "pinia": "^2.0.11",
+    "source-map-url": "^0.4.1",
+    "vue": "^3.2.29",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.1.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23",
+    "vite": "^2.7.13",
+    "vite-plugin-pwa": "^0.11.13"
+  }
+}
