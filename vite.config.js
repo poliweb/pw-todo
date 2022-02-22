@@ -11,8 +11,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
+        name: 'application PW-ToDo',
+        short_name: 'PW-ToDo',
+        description: 'To Do поможет вам сосредоточиться на любом занятии — от работы до подготовки к путишествию.',
         theme_color: '#db2777',
         icons: [
           {
