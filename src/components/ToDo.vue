@@ -26,19 +26,17 @@
             <div class="flex items-center justify-between mb-4">
               <div class>
                 <span class="text-pink-600 font-bold">{{ i + 1 }}.</span>
-                <span
+                <label
                   class="text-sm"
                   :class="{ linethrough: todo.isComplete }"
-                  for="isComplete"
                   @dblclick="removeTodo(i)"
-                  >{{ todo.text }}</span
-                >
-                <input
+                  >{{ todo.text }}
+                  <input
                   v-model="todo.isComplete"
-                  id="isComplete"
                   type="checkbox"
                   class="mx-2 text-green-600 border-0 rounded-md focus:ring-0"
                 />
+                  </label>
               </div>
               <button @click="removeTodo(i)" class="btn" aria-label="Trash">
                 <span class="text-white"><IconTrash/></span>
