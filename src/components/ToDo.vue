@@ -29,16 +29,18 @@
                 <span
                   class="text-sm"
                   :class="{ linethrough: todo.isComplete }"
+                  for="isComplete"
                   @dblclick="removeTodo(i)"
                   >{{ todo.text }}</span
                 >
                 <input
                   v-model="todo.isComplete"
+                  id="isComplete"
                   type="checkbox"
                   class="mx-2 text-green-600 border-0 rounded-md focus:ring-0"
                 />
               </div>
-              <button @click="removeTodo(i)" class="btn">
+              <button @click="removeTodo(i)" class="btn" aria-label="Trash">
                 <span class="text-white"><IconTrash/></span>
               </button>
             </div>
