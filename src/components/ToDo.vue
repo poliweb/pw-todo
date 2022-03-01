@@ -27,7 +27,7 @@
               <div class>
                 <span class="text-pink-600 font-bold">{{ i + 1 }}.</span>
                 <label
-                  class="text-sm"
+                  class="text-2xl md:text-sm"
                   :class="{ linethrough: todo.isComplete }"
                   @dblclick="removeTodo(i)"
                   >{{ todo.text }}
