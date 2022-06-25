@@ -63,7 +63,7 @@
           cloud databases. The application saves all information in the Local Storage.
         </p>
         <p class="text-pink-600 ">
-            Use to your heart's content!<br/> Poli Web is for you!
+            Use to your heart's content!<br/> PoliWeb is for you!
         </p>
       </div>
     </Transition>
