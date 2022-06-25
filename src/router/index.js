@@ -35,10 +35,17 @@ const router = createRouter({
         title:  'Contact'
       }
     }
-  ]
+  ],
+
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top
+    return { top: 0 }
+  },
+
 })
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title}`,
   next()
 })
+
 export default router
