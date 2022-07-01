@@ -40,7 +40,7 @@
       </section>
     </div>
     <Transition name="list" tag="div">
-      <div v-if="todos.length === 0" class="text-gray-600">
+      <div v-if="todos.length === 0" class="text-gray-600 text-lg">
         <p class="py-2">This amazing web application will help you quickly checklist your to-dos or purchases on your
           smartphone or
           computer. The application runs on PWA technology and can be installed locally as a web application on a
