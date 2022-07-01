@@ -15,7 +15,7 @@
         <TransitionGroup name="list" tag="div">
           <div v-for="(todo, i) in filteredTodos" :key="todo.id" :class="{ completed: todo.completed }">
             <div class="flex items-center justify-between mb-4">
-              <div class>
+              <div class="text-gray-600">
                 <span class="text-pink-600 font-bold">{{ i + 1 }}.</span>
                 <label class="text-2xl md:text-sm" :class="{ linethrough: todo.isComplete }"
                   @dblclick="removeTodo(i)">{{ todo.text }}
@@ -33,37 +33,25 @@
         </TransitionGroup>
 
         <hr />
-        <div class>
+        <div class="text-gray-600">
           <p>Task list {{ todos.length }}</p>
           <p>Tasks not completed {{ remaining }}</p>
         </div>
       </section>
-      <!-- <button @click="todo.isComplete" class="bg-pink-600 px-2 py-1 text-white">Выполнено</button>
-      <a href="#/isComplete" :class="{ linethrough: todo.isComplete === 'isComplete' }">Completed</a>
-      <ul class="filters">
-        <li>
-          <a href="#/all" :class="{ selected: visibility === 'all' }">All</a>
-        </li>
-        <li>
-          <a href="#/active" :class="{ selected: visibility === 'active' }">Active</a>
-        </li>
-        <li>
-          <a href="#/completed" :class="{ selected: visibility === 'isComplete' }">Completed</a>
-        </li>
-            </ul>-->
     </div>
     <Transition name="list" tag="div">
-      <div v-if="todos.length === 0">
-        <p class="py-2">This amazing web application will help you quickly checklist your to-dos or purchases on your smartphone or
+      <div v-if="todos.length === 0" class="text-gray-600">
+        <p class="py-2">This amazing web application will help you quickly checklist your to-dos or purchases on your
+          smartphone or
           computer. The application runs on PWA technology and can be installed locally as a web application on a
-          smartphone or computer. 
+          smartphone or computer.
         </p>
         <p class="py-2">
           To compile the list and the application does not require an Internet connection and
           cloud databases. The application saves all information in the Local Storage.
         </p>
         <p class="text-pink-600 ">
-            Use to your heart's content!<br/> PoliWeb is for you!
+          Use to your heart's content!<br /> PoliWeb is for you!
         </p>
       </div>
     </Transition>
@@ -154,7 +142,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .linethrough {
   text-decoration-line: line-through;
   text-decoration-color: #db2777;
@@ -169,6 +157,7 @@ export default {
 .list-leave-active {
   transition: all 0.5s ease;
 }
+
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
