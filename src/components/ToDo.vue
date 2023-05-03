@@ -20,7 +20,7 @@
                 <label class="text-2xl md:text-sm" :class="{ linethrough: todo.isComplete }"
                   @dblclick="removeTodo(i)">{{ todo.text }}
                   <input v-model="todo.isComplete" type="checkbox"
-                    class="mx-2 text-green-600 border-0 rounded-md focus:ring-0" />
+                    class="mx-2 text-green-600 border-0 rounded-md focus:ring-0 checkbox" />
                 </label>
               </div>
               <button @click="removeTodo(i)" class="btn" aria-label="Trash">
@@ -147,6 +147,9 @@ export default {
   text-decoration-line: line-through;
   text-decoration-color: #db2777;
   color: #acacac;
+}
+.checkbox {
+  accent-color: #db2777;
 }
 
 .min-screen {
