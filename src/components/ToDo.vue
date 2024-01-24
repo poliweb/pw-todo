@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto px-5 py-8 max-w-sm min-screen">
-    <h1 class="text-5xl mb-8">
-      {{ title }}
+    <h2 class="text-5xl mb-8">
+      <span class="text-dark-500">{{ title }}</span>
       <span class="text-pink-600">{{ titleSpan }}</span>
-    </h1>
+    </h2>
     <div class="wrap">
       <p>{{ todo }}</p>
       <div class="flex justify-between mb-8">
