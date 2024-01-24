@@ -8,7 +8,7 @@
       <p>{{ todo }}</p>
       <div class="flex justify-between mb-8">
         <input v-model="todo" type="text" placeholder="Todo..." @keyup.enter="addTodo(id++)"
-          class="inputTodo placeholder:text-pink-600" />
+          class="inputTodo placeholder:text-pink-600 focus:ring focus:ring-pink-200 focus:border-pink-500" />
         <button @click="addTodo(id++)" class="btn">Add ToDo</button>
       </div>
       <section class="main" v-show="todos.length">
