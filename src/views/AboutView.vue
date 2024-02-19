@@ -208,6 +208,25 @@ const skills = ref([
   },
 ])
 
+const projects = ref([
+  {
+    item: 'PoliWeb Web Studio',
+    title: 'Full-stack Developer. Duration: 2009 - 2019',
+  },
+  {
+    item: 'Edgestile',
+    title: 'Regional business partner for promoting CMS SiteEdit in Kazakhstan. Website development, client servicing, CMS SiteEdit consulting. Duration: 2010 - 2020',
+  },
+  {
+    item: 'Outsourcing',
+    title: 'Frontend Development and Backend Development. Duration: 2019 - 2022',
+  },
+  {
+    item: 'ATHENA PLUS Web Studio',
+    title: 'Lead Web Developer, projects on Vue.js, Nuxt.js, and PHP. Duration: 05.12.2022 - Present',
+  },
+])
+
 const experience = ref([
   {
     item: 'PoliWeb Web Studio',
@@ -226,5 +245,6 @@ const experience = ref([
     title: 'Lead Web Developer, projects on Vue.js, Nuxt.js, and PHP. Duration: 05.12.2022 - Present',
   },
 ])
+
 </script>
 <style></style>
