@@ -30,6 +30,7 @@
                   class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
               </div>
             </div>
+            <input type="hidden" name="_redirect" value="https://todo.poliweb.su/thanks" />
             <div class="p-2 w-full">
               <button type="submit"
                 class="flex mx-auto text-white bg-pink-600 border-0 py-2 px-8 focus:outline-none hover:bg-pink-500 rounded text-lg">Button</button>
