@@ -33,7 +33,13 @@
             <input type="hidden" name="_redirect" value="https://todo.poliweb.su/thanks" />
             <div class="p-2 w-full">
               <button type="submit"
-                class="flex mx-auto text-white bg-pink-600 border-0 py-2 px-8 focus:outline-none hover:bg-pink-500 rounded text-lg">Button</button>
+                class="flex mx-auto text-white bg-pink-600 border-0 py-2 px-8 focus:outline-none hover:bg-pink-500 rounded text-lg"
+                :disabled="loading"
+                @click="submitForm"
+                >
+                <span v-if="loading">Sending ...</span>
+                <span v-else>Submit</span>
+              </button>
             </div>
           </div>
         </form>
@@ -55,6 +61,25 @@ import IconButton from "../components/IconButton.vue";
 export default {
   components: {
     IconButton,
+  },
+  data() {
+    return {
+      loading: false,
+    };
+  },
+  methods: {
+    submitForm() {
+      this.loading = true;
+
+      // Ваш код для отправки формы
+      // Например, с использованием setTimeout для имитации задержки
+      setTimeout(() => {
+        // Ваш код для отправки данных на сервер
+
+        // После успешной отправки или завершения обработки формы
+        this.loading = false;
+      }, 5000); // 5 секунд задержки
+    },
   },
 };
 </script>
