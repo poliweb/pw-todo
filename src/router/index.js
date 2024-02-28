@@ -34,6 +34,14 @@ const router = createRouter({
       meta: {
         title:  'Contact'
       }
+    },
+    {
+      path: '/thanks',
+      name: 'thanks',
+      component: () => import('../views/thanks.vue'),
+      meta: {
+        title:  'Thanks! Your email has been sent!'
+      }
     }
   ],
 
