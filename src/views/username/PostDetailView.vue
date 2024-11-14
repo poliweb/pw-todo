@@ -39,6 +39,8 @@ onMounted(async () => {
 
     if (articleData.id && articleData.user.username === props.userId) {
       article.value = articleData;
+       // Динамически обновляем title
+       document.title = article.value.title;
     } else {
       showNotFoundError();
     }
