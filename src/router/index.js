@@ -46,7 +46,7 @@ const router = createRouter({
       component: () => import('../views/username/PostDetailView.vue'),
       props: true,
       meta: {
-        title:  'Post'
+        title:  'Post Detail'
       }
     },
     {

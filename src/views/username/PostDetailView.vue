@@ -1,4 +1,5 @@
 <template>
+    
     <div v-if="article">
       <h1>{{ article.title }}</h1>
       <p>Автор: {{ article.user.name }}</p>
@@ -9,7 +10,45 @@
     </div>
   </template>
   
-  <script>
+
+  <script setup>
+import { ref, onMounted } from 'vue';
+
+// Пропсы
+const props = defineProps({
+  userId: String,
+  postId: String,
+});
+
+// Состояние компонента
+const article = ref(null);
+
+// Функция для обработки ошибки
+const showNotFoundError = () => {
+  if (process.server) {
+    useRouter().push({ path: '/404' }); // Редирект на страницу 404
+  }
+  throw new Error('Статья не найдена');
+};
+
+// Запрос к API и проверка данных
+onMounted(async () => {
+  try {
+    const response = await fetch(`https://dev.to/api/articles/${props.postId}`);
+    const articleData = await response.json();
+
+    if (articleData.id && articleData.user.username === props.userId) {
+      article.value = articleData;
+    } else {
+      showNotFoundError();
+    }
+  } catch (error) {
+    console.error('Ошибка при загрузке статьи:', error);
+    showNotFoundError();
+  }
+});
+</script>
+  <!-- <script>
   export default {
     props: ['userId', 'postId'],
     data() {
@@ -44,7 +83,7 @@
       },
     },
   };
-  </script>
+  </script> -->
 
 <style>
 .content .highlight {
