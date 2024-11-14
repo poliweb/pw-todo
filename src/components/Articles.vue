@@ -2,7 +2,7 @@
     <div class="container px-5 py-24 mx-auto">
         <div class="text-center mb-[60px]">
             <h3
-                class="text-[#000] font-medium uppercase pb-4 text-xl pb-4 mb-4 bg-[url('/img/separator.jpg')] bg-bottom bg-no-repeat">
+                class="text-[#000] font-medium uppercase pb-4 text-xl pb-4 mb-4">
                 Updates From Our Shop
             </h3>
             <p class="text-[#999] text-[13px]">
