@@ -111,7 +111,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import IconsFavorite from "./icons/Favorite.vue";
 import IconsFavoriteBase from "./icons/favoriteBase.vue";
 import iconChat from "./icons/iconChat.vue";
@@ -120,33 +120,32 @@ import IconChatBase from './icons/iconChatBase.vue';
 const articles = ref([]);
 const isLoading = ref(true);
 const errorMessage = ref('');
+const currentPage = ref(1);
+const title = ref("New Nuxt.js");
 const wordLimit = 10; // Лимит на количество слов
 const charLimit = 50; // Лимит на количество символов (включая пробелы)
 
-
 const truncateDescription = (description) => {
     if (description.length > charLimit) {
-        return description.slice(0, charLimit) + '...'; // Обрезаем по символам и добавляем троеточие
+        return description.slice(0, charLimit) + '...';
     }
     return description;
 };
 
-
-
-// Вытягивание даных из файла json 
-// Ссылка на фейковые товары https://dummyjson.com/articles?limit=20&skip=20&select=title,price,description,thumbnail
+// Функция для загрузки статей
 const fetchArticles = async () => {
     isLoading.value = true;
-    errorMessage.value = ''; // Сброс ошибки перед новым запросом
+    errorMessage.value = '';
     try {
-        const response = await fetch('https://dev.to/api/articles/?tag=nuxt&per_page=20');
+        const response = await fetch(`https://dev.to/api/articles/?tag=nuxt&page=${currentPage.value}`);
 
         if (!response.ok) {
-            throw new Error('Failed to fetch articles / Не удалось получить продукты');
+            throw new Error('Failed to fetch articles / Не удалось получить статьи');
         }
+
         const responseData = await response.json();
-        articles.value = responseData;
-        // console.log(articles.value);
+        // Добавляем новые статьи к существующим
+        articles.value.push(...responseData);
     } catch (error) {
         errorMessage.value = error.message || 'An unknown error occurred / Произошла неизвестная ошибка';
     } finally {
@@ -154,6 +153,15 @@ const fetchArticles = async () => {
     }
 };
 
+// Метод для ленивой загрузки статей
+const lazyLoadArticles = (isVisible) => {
+    if (isVisible && currentPage.value < 5) {
+        currentPage.value++;
+        fetchArticles();
+    }
+};
+
+// Загружаем статьи при монтировании компонента
 onMounted(() => {
     fetchArticles();
 });
