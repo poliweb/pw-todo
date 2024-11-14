@@ -90,7 +90,8 @@
                         </span>
                         <span
                             class="text-gray-400 inline-flex items-center leading-none text-sm mr-3  pr-3 py-1 border-r-2 border-gray-200">
-                            <!-- <comments-icon class="w-4 h-4 mr-1" /> -->
+                            <IconChatBase v-if="article.comments_count > 0" class="w-4 h-4 mr-1 text-pink-500" />
+                            <iconChat v-else class="w-4 h-4 mr-1" />
                             {{ article.comments_count }}
                         </span>
                         <span class="text-gray-400 inline-flex items-center leading-none text-sm ">
@@ -113,6 +114,8 @@
 import { ref, onMounted, computed } from 'vue';
 import IconsFavorite from "./icons/Favorite.vue";
 import IconsFavoriteBase from "./icons/favoriteBase.vue";
+import iconChat from "./icons/iconChat.vue";
+import IconChatBase from './icons/iconChatBase.vue';
 
 const articles = ref([]);
 const isLoading = ref(true);
