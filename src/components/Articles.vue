@@ -55,12 +55,16 @@
                     <p class="card-description font-light">{{ article.description }}</p>
                     <!-- Блок информации -->
                     <div class="flex items-center flex-wrap">
-                        <!-- <router-link :to="{
-                            name: 'username-article',
-                            params: { username: article.user.username, article: article.id }
+
+                        <router-link :to="{
+                            name: 'PostDetail',
+                            params: {
+                                userId: article.user.username, // Значение `userId` из данных статьи
+                                postId: article.id,      // Значение `postId` из данных статьи
+                            },
                         }" class="text-pink-500 hover:text-pink-800 inline-flex items-center md:mb-2 lg:mb-0 transition duration-700 ease-in-out">
                             Learn More
-                        </router-link> -->
+                        </router-link>
 
                         <span
                             class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
@@ -98,12 +102,12 @@ const wordLimit = 10; // Лимит на количество слов
 const charLimit = 50; // Лимит на количество символов (включая пробелы)
 
 
-// const truncateDescription = (description) => {
-//     if (description.length > charLimit) {
-//         return description.slice(0, charLimit) + '...'; // Обрезаем по символам и добавляем троеточие
-//     }
-//     return description;
-// };
+const truncateDescription = (description) => {
+    if (description.length > charLimit) {
+        return description.slice(0, charLimit) + '...'; // Обрезаем по символам и добавляем троеточие
+    }
+    return description;
+};
 
 
 

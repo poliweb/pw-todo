@@ -27,9 +27,6 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
       meta: {
         title:  'About Me'
@@ -41,6 +38,15 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue'),
       meta: {
         title:  'Contact'
+      }
+    },
+    {
+      path: '/:userId/:postId', // Динамический маршрут с параметрами `userId` и `postId`
+      name: 'PostDetail',
+      component: () => import('../views/username/PostDetailView.vue'),
+      props: true,
+      meta: {
+        title:  'Post'
       }
     },
     {
