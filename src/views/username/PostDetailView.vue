@@ -48,42 +48,7 @@ onMounted(async () => {
   }
 });
 </script>
-  <!-- <script>
-  export default {
-    props: ['userId', 'postId'],
-    data() {
-      return {
-        article: null,
-      };
-    },
-    async created() {
-      try {
-        // Запрос к API для получения статьи
-        const response = await fetch(`https://dev.to/api/articles/${this.postId}`);
-        const article = await response.json();
-  
-        // Проверяем, совпадает ли имя пользователя
-        if (article.id && article.user.username === this.userId) {
-          this.article = article;
-        } else {
-          // Если статья не найдена или пользователь не совпадает, выбрасываем ошибку
-          this.showNotFoundError();
-        }
-      } catch (error) {
-        console.error('Ошибка при загрузке статьи:', error);
-        this.showNotFoundError();
-      }
-    },
-    methods: {
-      showNotFoundError() {
-        if (process.server) {
-          this.$nuxt.context.res.statusCode = 404;
-        }
-        throw new Error('Статья не найдена');
-      },
-    },
-  };
-  </script> -->
+
 
 <style>
 .content .highlight {
