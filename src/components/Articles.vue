@@ -30,6 +30,13 @@
                 <div v-for="article in articles" :key="article.id" class="card item-article">
                     <div class="card-image-container relative overflow-hidden mb-4 ">
                         <!-- Блок фото -->
+                        <router-link :to="{
+                            name: 'PostDetail',
+                            params: {
+                                userId: article.user.username, // Значение `userId` из данных статьи
+                                postId: article.id,      // Значение `postId` из данных статьи
+                            },
+                        }" >
                         <div class="relative overflow-hidden">
                             <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
                                 class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
@@ -43,6 +50,7 @@
                             </div>
 
                         </div>
+                        </router-link>
                     </div>
                     <div class="flex flex-wrap gap-x-4">
                         <div v-for="tag in article.tag_list" :key="tag">
@@ -51,7 +59,15 @@
                                 #{{ tag }}</h2>
                         </div>
                     </div>
+                    <router-link :to="{
+                            name: 'PostDetail',
+                            params: {
+                                userId: article.user.username, // Значение `userId` из данных статьи
+                                postId: article.id,      // Значение `postId` из данных статьи
+                            },
+                        }" >
                     <h2 class="card-title ">{{ article.title }}</h2>
+                    </router-link>
                     <p class="card-description font-light">{{ article.description }}</p>
                     <!-- Блок информации -->
                     <div class="flex items-center flex-wrap">
