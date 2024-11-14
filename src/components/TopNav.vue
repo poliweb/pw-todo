@@ -9,6 +9,7 @@ import { RouterLink, RouterView } from "vue-router";
     </router-link>
     <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-lg md:text-base justify-center">
       <router-link :to="{name: 'home'}" replace class="mr-5 hover:text-gray-900 ">Home</router-link>
+      <router-link :to="{name: 'devto'}" replace class="mr-5 hover:text-gray-900 ">Dev To</router-link>
       <router-link :to="{name: 'about'}" class="mr-5 hover:text-gray-900">About Me</router-link>
       <router-link :to="{name: 'contact'}" class="mr-5 hover:text-gray-900">Сontact</router-link>
 

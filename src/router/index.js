@@ -17,6 +17,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/devto',
+      name: 'devto',
+      component: () => import('../views/DevtoView.vue'),
+      meta: {
+        title:  'Articles Dev To'
+      }
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
