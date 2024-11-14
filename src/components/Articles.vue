@@ -39,13 +39,13 @@
                                 <img :src="article.user.profile_image" :alt="article.user.name"
                                     class="rounded-full w-10 h-10" />
                                 <div class="bg-pink-600 px-2 py-1 text-white rounded"><span class="">{{
-                                        article.user.name }}</span></div>
+                                    article.user.name }}</span></div>
                             </div>
 
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-x-4">
-                        <div v-for="tag in article.tag_list" :key="tag" >
+                        <div v-for="tag in article.tag_list" :key="tag">
                             <h2
                                 class="tracking-widest text-xs title-font font-medium text-pink-500 hover:text-pink-800 mb-1 uppercase transition duration-700 ease-in-out">
                                 #{{ tag }}</h2>
@@ -53,7 +53,30 @@
                     </div>
                     <h2 class="card-title ">{{ article.title }}</h2>
                     <p class="card-description font-light">{{ article.description }}</p>
+                    <!-- Блок информации -->
+                    <div class="flex items-center flex-wrap">
+                        <!-- <router-link :to="{
+                            name: 'username-article',
+                            params: { username: article.user.username, article: article.id }
+                        }" class="text-pink-500 hover:text-pink-800 inline-flex items-center md:mb-2 lg:mb-0 transition duration-700 ease-in-out">
+                            Learn More
+                        </router-link> -->
 
+                        <span
+                            class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                            <!-- <heart-icon class="w-4 h-4 mr-1" /> -->
+                            {{ article.positive_reactions_count }}
+                        </span>
+                        <span
+                            class="text-gray-400 inline-flex items-center leading-none text-sm mr-3  pr-3 py-1 border-r-2 border-gray-200">
+                            <!-- <comments-icon class="w-4 h-4 mr-1" /> -->
+                            {{ article.comments_count }}
+                        </span>
+                        <span class="text-gray-400 inline-flex items-center leading-none text-sm ">
+                            {{ article.readable_publish_date }}
+                            <!-- <date v-if="article.published_at">{{ article.published_at }}</date> -->
+                        </span>
+                    </div>
                 </div>
             </div>
         </template>

@@ -1,8 +1,6 @@
 <template>
     <section>
-        <div class="container px-5 py-24 mx-auto">
-            <Articles />
-        </div>
+        <Articles />
     </section>
 </template>
 
@@ -11,6 +9,4 @@ import Articles from '@/components/Articles.vue';
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
