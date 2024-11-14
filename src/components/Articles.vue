@@ -84,7 +84,8 @@
 
                         <span
                             class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                            <!-- <heart-icon class="w-4 h-4 mr-1" /> -->
+                            <IconsFavoriteBase v-if="article.positive_reactions_count > 0" class="w-4 h-4 mr-1 text-pink-500" />
+                            <IconsFavorite v-else class="w-4 h-4 mr-1" />
                             {{ article.positive_reactions_count }}
                         </span>
                         <span
@@ -110,6 +111,8 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
+import IconsFavorite from "./icons/Favorite.vue";
+import IconsFavoriteBase from "./icons/favoriteBase.vue";
 
 const articles = ref([]);
 const isLoading = ref(true);
