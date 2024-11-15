@@ -1,7 +1,7 @@
 <template>
   <section class="bg-white text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-col">
-      <div class="lg:w-4/6 mx-auto">
+      <div class="lg:w-5/6 mx-auto">
         <div class="hidden sm:block rounded-lg h-64 overflow-hidden">
           <img alt="content" class="object-cover object-center h-full w-full"
             src="https://res.cloudinary.com/poliweb/image/upload/c_fill,w_1200/v1640324519/HeaderPortfolio_bjo6uu.webp">
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div
-            class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+            class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-left">
             <div class="">
               <p class="leading-relaxed text-lg mb-4">My competence allows you to start a project with the development
                 of
