@@ -41,6 +41,15 @@ const router = createRouter({
       }
     },
     {
+      path: '/:userId', // Динамический маршрут с параметрами `userId`
+      name: 'UserDetail',
+      component: () => import('../views/username/index.vue'),
+      props: true,
+      meta: {
+        title:  'User Detail'
+      }
+    },
+    {
       path: '/:userId/:postId', // Динамический маршрут с параметрами `userId` и `postId`
       name: 'PostDetail',
       component: () => import('../views/username/PostDetailView.vue'),

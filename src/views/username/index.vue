@@ -1,6 +1,6 @@
 <template>
-    <div class="user">
-        <h2>User {{ $route.params.id }}</h2>
+    <div class="user container mx-auto px-5 py-24">
+        <h2>User {{ $route.params.userId }}</h2>
         <router-view />
     </div>
 </template>
