@@ -2,7 +2,7 @@
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-col">
       <div v-if="article" class="lg:w-5/6 mx-auto">
-        <div class="rounded-lg h-64 overflow-hidden">
+        <div class="rounded-lg overflow-hidden">
           <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
             class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
           <img v-else :src="article.social_image" :alt="article.title"
