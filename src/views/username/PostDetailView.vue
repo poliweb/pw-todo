@@ -189,7 +189,17 @@ pre {
   line-height: 1.42em;
   font-size: 13px;
 }
-
+p code {
+  display: block; /* Делаем элемент блочным */
+  max-width: 100%; /* Ограничиваем ширину контейнера */
+  overflow-x: auto; /* Добавляем горизонтальную прокрутку при необходимости */
+  word-break: break-all; /* Разбиваем слова при переполнении */
+  white-space: pre-wrap; /* Сохраняем перенос строк и пробелы */
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  font-family: monospace; /* Используем моноширинный шрифт */
+}
 @media screen and (min-width: 380px) {
   pre {
     font-size: 15px;
