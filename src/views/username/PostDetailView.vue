@@ -28,9 +28,9 @@
                 <img :src="user.profile_image" :alt="user.name" class="rounded-full" />
               </div>
               <div class="flex flex-col items-center text-center justify-center">
-                <h2 class="font-medium title-font mt-4 text-gray-900 text-2xl">
+                <h2 class="font-medium title-font mt-4 text-gray-900 text-xl lg:text-2xl">
                   {{ user.name }}
-                  <span class="text-md">@{{ user.username }}</span>
+                  <span class="text-base lg:text-xl text-gray-500">@{{ user.username }}</span>
                 </h2>
                 <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
                 <p v-if="user.summary" class="text-base my-4">
