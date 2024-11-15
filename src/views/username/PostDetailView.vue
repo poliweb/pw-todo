@@ -1,18 +1,89 @@
 <template>
-    
-    <div v-if="article">
-      <h1>{{ article.title }}</h1>
-      <p>Автор: {{ article.user.name }}</p>
-      <div class="content" v-html="article.body_html" />
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-col">
+      <div v-if="article" class="lg:w-5/6 mx-auto">
+        <div class="rounded-lg h-64 overflow-hidden">
+          <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
+            class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
+          <img v-else :src="article.social_image" :alt="article.title"
+            class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
+        </div>
+        <div class="flex flex-col sm:flex-row mt-10">
+          <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+            <div class="sticky top-0">
+              <!-- ============== -->
+              <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
+                <img :src="user.profile_image" :alt="user.name" class="rounded-full" />
+              </div>
+              <div class="flex flex-col items-center text-center justify-center">
+                <h2 class="font-medium title-font mt-4 text-gray-900 text-2xl">
+                  {{ user.name }}
+                  <span class="text-sm">@{{ user.username }}</span>
+                </h2>
+                <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
+                <p v-if="user.summary" class="text-base my-4">
+                  <span class="text-gray-400">About:</span>
+                  {{ user.summary }}
+                </p>
+                <div class="my-4">
+                  <div v-if="user.location" class="flex flex-wrap gap-2">
+                    <div class="text-gray-400">Location:</div>
+                    <div class="text-gray-800 font-bold">{{ user.location }}</div>
+                  </div>
+                  <div v-if="user.joined_at" class="flex flex-wrap gap-2">
+                    <div class="text-gray-400">Joined:</div>
+                    <div class="text-gray-800 font-bold">{{ user.joined_at }}</div>
+                  </div>
+                </div>
+                <!-- Icons Linls ==============================-->
+                <div class="ml-auto mr-auto mt-4">
+                  <div class="links flex justify-center gap-8">
+                    <a v-if="user.github_username" :href="`https://github.com/${user.github_username}`" target="_blank">
+                      <!-- <github-icon /> -->
+                      Git Hub
+                    </a>
+                    <a v-if="user.twitter_username" :href="`https://twitter.com/${user.twitter_username}`"
+                      target="_blank">
+                      <!-- <twitter-icon /> -->
+                      Twiter
+                    </a>
+                    <a v-if="user.website_url" :href="user.website_url" target="_blank"
+                      rel="nofollow noopener noreferrer">
+                      <!-- <externallink-icon /> -->
+                      Web
+                    </a>
+                    <a :href="`https://dev.to/${user.username}`" target="_blank" rel="nofollow noopener noreferrer">
+                      <!-- <dev-icon /> -->
+                      Dev to
+                    </a>
+                  </div>
+                </div>
+                <!-- Icons Linls ==============================-->
+              </div>
+            </div>
+          </div>
+          <div
+            class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+            <div class="content" v-html="article.body_html" />
+          </div>
+        </div>
+      </div>
     </div>
-    <div v-else>
-      <h2>Статья не найдена</h2>
+  </section>
+  <!-- Прелоудер -->
+  <template v-if="isLoading">
+    <div class="flex flex-col items-center justify-center min-h-screen">
+      <div class="loader"></div>
+      <p>Loading articles...</p>
     </div>
   </template>
-  
+</template>
 
-  <script setup>
+
+<script setup>
 import { ref, onMounted } from 'vue';
+
+const isLoading = ref(true);
 
 // Пропсы
 const props = defineProps({
@@ -22,6 +93,7 @@ const props = defineProps({
 
 // Состояние компонента
 const article = ref(null);
+const user = ref(null);
 
 // Функция для обработки ошибки
 const showNotFoundError = () => {
@@ -33,20 +105,26 @@ const showNotFoundError = () => {
 
 // Запрос к API и проверка данных
 onMounted(async () => {
+  isLoading.value = true;
   try {
-    const response = await fetch(`https://dev.to/api/articles/${props.postId}`);
-    const articleData = await response.json();
+    const articleResponse = await fetch(`https://dev.to/api/articles/${props.postId}`);
+    const userResponse = await fetch(`https://dev.to/api/users/by_username?url=${props.userId}`);
+    const articleData = await articleResponse.json();
+    const userData = await userResponse.json();
 
     if (articleData.id && articleData.user.username === props.userId) {
       article.value = articleData;
-       // Динамически обновляем title
-       document.title = article.value.title;
+      user.value = userData;
+      // Динамически обновляем title
+      document.title = article.value.title;
     } else {
       showNotFoundError();
     }
   } catch (error) {
     console.error('Ошибка при загрузке статьи:', error);
     showNotFoundError();
+  } finally {
+    isLoading.value = false;
   }
 });
 </script>
@@ -57,6 +135,7 @@ onMounted(async () => {
   margin-bottom: 1rem;
   border-radius: 0.5rem;
 }
+
 .highlight {
   background: #29292e;
   color: #f8f8f2;
@@ -72,12 +151,14 @@ onMounted(async () => {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
 .content h2 {
   font-size: 1.5rem;
   line-height: 2rem;
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
 .content h3 {
   font-size: 1.25em;
   margin-bottom: 10px;
@@ -86,6 +167,17 @@ onMounted(async () => {
 
 .content a {
   color: #ec4899;
+}
+
+
+/* Простой стиль для прелоудера */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
 }
 
 pre {
@@ -101,6 +193,16 @@ pre {
 @media screen and (min-width: 380px) {
   pre {
     font-size: 15px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
