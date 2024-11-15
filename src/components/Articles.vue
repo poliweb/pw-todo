@@ -1,5 +1,5 @@
 <template>
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container px-5 py-24 mx-auto min-h-screen">
         <div class="text-center mb-[60px]">
             <h3
                 class="text-[#000] font-medium uppercase pb-4 text-xl pb-4 mb-4">
