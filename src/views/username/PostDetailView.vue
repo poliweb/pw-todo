@@ -10,7 +10,7 @@
         </div>
         
         <!-- Title -->
-        <h2 class="text-7xl my-8">{{ article.title }}</h2>
+        <h2 class="text-3xl font-bold md:text-7xl my-8">{{ article.title }}</h2>
         <div class="flex flex-wrap gap-2">
           <span
             v-for="tag in article.tags"
@@ -20,8 +20,8 @@
         </div>
 
 
-        <div class="flex flex-col sm:flex-row mt-10">
-          <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+        <div class="flex flex-col md:flex-row mt-10">
+          <div class="md:w-1/3 text-center md:pr-8 md:py-8">
             <div class="sticky top-8">
               <!-- ============== -->
               <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
@@ -30,7 +30,7 @@
               <div class="flex flex-col items-center text-center justify-center">
                 <h2 class="font-medium title-font mt-4 text-gray-900 text-2xl">
                   {{ user.name }}
-                  <span class="text-sm">@{{ user.username }}</span>
+                  <span class="text-md">@{{ user.username }}</span>
                 </h2>
                 <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
                 <p v-if="user.summary" class="text-base my-4">
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div
-            class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-left">
+            class="md:w-2/3 md:pl-8 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
             <div class="content" v-html="article.body_html" />
           </div>
         </div>
