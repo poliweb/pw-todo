@@ -188,15 +188,6 @@ onMounted(() => {
     @apply text-green-700 text-lg font-bold text-right;
 }
 
-/* Простой стиль для прелоудера */
-.loader {
-    border: 4px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 4px solid #3498db;
-    width: 40px;
-    height: 40px;
-    animation: spin 2s linear infinite;
-}
 
 .simvolText {
     width: 50ch;
@@ -222,15 +213,5 @@ onMounted(() => {
 
 .item-article:hover .item-article__img {
     transform: scale(1.5);
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
 }
 </style>

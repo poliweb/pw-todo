@@ -53,7 +53,7 @@ onMounted(async () => {
 
         // Если статьи есть, сохраняем их
         userArticles.value = userData
-        console.log(userArticles.value)
+        // console.log(userArticles.value)
     } catch (error) {
         console.error('Ошибка при загрузке данных:', error)
         noArticlesFound.value = true
