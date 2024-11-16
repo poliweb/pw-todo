@@ -43,7 +43,7 @@
                             <img v-else :src="article.social_image" :alt="article.title"
                                 class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
                             <div class="absolute bottom-0 left-0 flex items-center gap-4">
-                                <img :src="article.user.profile_image" :alt="article.user.name"
+                                <img :src="article.user.profile_image_90" :alt="article.user.name"
                                     class="rounded-full w-10 h-10" />
                                 <div class="bg-pink-600 px-2 py-1 text-white rounded"><span class="">{{
                                     article.user.name }}</span></div>
@@ -112,10 +112,10 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import IconsFavorite from "./icons/Favorite.vue";
-import IconsFavoriteBase from "./icons/favoriteBase.vue";
-import iconChat from "./icons/iconChat.vue";
-import IconChatBase from './icons/iconChatBase.vue';
+import IconsFavorite from "../icons/Favorite.vue";
+import IconsFavoriteBase from "../icons/favoriteBase.vue";
+import iconChat from "../icons/iconChat.vue";
+import IconChatBase from '../icons/iconChatBase.vue';
 
 const articles = ref([]);
 const isLoading = ref(true);

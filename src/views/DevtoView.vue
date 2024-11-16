@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import Articles from '@/components/Articles.vue';
+import Articles from '@/components/blocks/Articles.vue';
 
 </script>
 
