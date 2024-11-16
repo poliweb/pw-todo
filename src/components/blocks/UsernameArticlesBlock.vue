@@ -1,10 +1,13 @@
 <template>
     <div>
-        <div class="flex items-center justify-center rounded-lg w-full h-64 bg-pink-500 overflow-hidden">
+        <div class="flex flex-col items-center justify-center rounded-lg w-full h-64 bg-pink-500 overflow-hidden">
             <!-- <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1200x500" /> -->
-             <h2 class="text-3xl text-white text-center font-bold p-4">
-                All articles from the author {{ userArticles[0]?.user?.name }}
+             <h2 class="text-[5vw] sm:text-[2vw] md:text-[2.3vw] text-gray-100 text-center font-bold text">
+                All articles from the author 
              </h2>
+             <h3 class="text-[8vw] sm:text-[3.5vw] md:text-[3vw] text-white text-center font-bold text">
+                {{ userArticles[0]?.user?.name }}
+             </h3>
         </div>
 
         <div v-if="isLoading">
@@ -68,4 +71,10 @@ onMounted(async () => {
 
 
 <style scoped>
+.text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.text_vw {
+    font-size: 3vw;
+}
 </style>
