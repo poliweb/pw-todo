@@ -19,14 +19,28 @@
           <div class="md:w-1/3 text-center md:pr-8 md:py-8">
             <div class="sticky top-8">
               <!-- ============== -->
-              <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-                <img :src="user.profile_image" :alt="user.name" class="rounded-full" />
+              <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400 hover:scale-110  transition duration-300 ease-in-out">
+                <router-link :to="{
+                        name: 'UserDetail',
+                        params: {
+                            userId: user.username, // Значение `userId` из данных статьи
+                        },
+                    }">
+                <img :src="user.profile_image" :alt="user.name" class="rounded-full shadow-2xl transition duration-300 ease-in-out" />
+                </router-link>
               </div>
               <div class="flex flex-col items-center text-center justify-center">
-                <h2 class="font-medium title-font mt-4 text-gray-900 text-xl lg:text-2xl">
+                <router-link :to="{
+                        name: 'UserDetail',
+                        params: {
+                            userId: user.username, // Значение `userId` из данных статьи
+                        },
+                    }">
+                <h2 class="font-medium title-font mt-4 text-gray-900 hover:text-pink-500 text-xl lg:text-2xl transition duration-300 ease-in-out">
                   {{ user.name }}
                   <span class="text-base lg:text-xl text-gray-500">@{{ user.username }}</span>
                 </h2>
+                </router-link>
                 <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
                 <p v-if="user.summary" class="text-base my-4">
                   <span class="text-gray-400">About:</span>

@@ -18,7 +18,9 @@
             <div>
                 <!-- Аватар пользователя -->
                 <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-                    <img :src="user.profile_image" :alt="user.name" class="rounded-full" />
+                    
+                        <img :src="user.profile_image" :alt="user.name" class="rounded-full shadow-2xl" />
+
                 </div>
 
                 <!-- Информация о пользователе -->
