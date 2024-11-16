@@ -1,9 +1,11 @@
 <template>
     <div>
-        <div class="rounded-lg h-64 overflow-hidden">
-            <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1200x500" />
+        <div class="flex items-center justify-center rounded-lg w-full h-64 bg-pink-500 overflow-hidden">
+            <!-- <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1200x500" /> -->
+             <h2 class="text-3xl text-white text-center font-bold p-4">
+                All articles from the author {{ userArticles[0]?.user?.name }}
+             </h2>
         </div>
-        <h1>UsernameArticlesBlock.vue</h1>
 
         <div v-if="isLoading">
             <div class="flex flex-col items-center justify-center">
