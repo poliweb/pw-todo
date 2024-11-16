@@ -90,34 +90,48 @@
                       v-if="user.github_username"
                       :href="`https://github.com/${user.github_username}`"
                       target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      title="Github"
                     >
                       <!-- <github-icon /> -->
-                      <IconGithub class="w-6 h-6 text-pink-500" />
+                      <IconGithub
+                        class="w-6 h-6 hover:text-pink-700 hover:scale-125 text-pink-500 transition duration-300 ease-in-out"
+                      />
                     </a>
                     <a
                       v-if="user.twitter_username"
                       :href="`https://twitter.com/${user.twitter_username}`"
                       target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      title="Twitter-X"
                     >
                       <!-- <twitter-icon /> -->
-                      <IconTwiter class="w-6 h-6 text-pink-500 fill-pink-500" />
+                      <IconTwiter
+                        class="w-6 h-6 hover:text-pink-700 hover:scale-125 text-pink-500 transition duration-300 ease-in-out"
+                      />
                     </a>
                     <a
                       v-if="user.website_url"
                       :href="user.website_url"
                       target="_blank"
                       rel="nofollow noopener noreferrer"
+                      title="Website"
                     >
                       <!-- <externallink-icon /> -->
-                      <icon-web class="w-6 h-6 text-pink-500" />
+                      <icon-web
+                        class="w-6 h-6 hover:text-pink-700 hover:scale-125 text-pink-500 transition duration-300 ease-in-out"
+                      />
                     </a>
                     <a
                       :href="`https://dev.to/${user.username}`"
                       target="_blank"
                       rel="nofollow noopener noreferrer"
+                      title="Dev.to"
                     >
                       <!-- <dev-icon /> -->
-                      <IconDev class="w-6 h-6 text-pink-500" />
+                      <IconDev
+                        class="w-6 h-6 hover:text-pink-700 hover:scale-125 text-pink-500 transition duration-300 ease-in-out"
+                      />
                     </a>
                   </div>
                 </div>
