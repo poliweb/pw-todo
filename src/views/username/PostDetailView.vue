@@ -49,15 +49,16 @@
                 </div>
                 <!-- Icons Linls ==============================-->
                 <div class="ml-auto mr-auto mt-4">
-                  <div class="links flex justify-center gap-4">
+                  <div class="links flex justify-center items-center gap-4">
                     <a v-if="user.github_username" :href="`https://github.com/${user.github_username}`" target="_blank">
                       <!-- <github-icon /> -->
-                      <IconGithub class="w-6 h-6 text-pink-500" />
+                        <IconGithub class="w-6 h-6 text-pink-500" />
+
                     </a>
                     <a v-if="user.twitter_username" :href="`https://twitter.com/${user.twitter_username}`"
                       target="_blank">
                       <!-- <twitter-icon /> -->
-                      <IconTwiter class="w-6 h-6 text-pink-500" />
+                      <IconTwiter class="w-6 h-6 text-pink-500 fill-pink-500" />
                     </a>
                     <a v-if="user.website_url" :href="user.website_url" target="_blank"
                       rel="nofollow noopener noreferrer">
@@ -96,7 +97,7 @@
 import { ref, onMounted } from 'vue';
 import IconDev from '@/components/icons/iconDev.vue';
 import IconWeb from '@/components/icons/iconWeb.vue';
-import IconGithub from '@/components/icons/iconGithub.vue';
+import IconGithub from '@/components/icons/IconGithub.vue';
 import IconTwiter from '@/components/icons/iconTwiter.vue';
 
 const isLoading = ref(true);
