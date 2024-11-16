@@ -1,11 +1,7 @@
 <template>
-    <div class="user container mx-auto px-5 py-24">
-        <h2>User {{ $route.params.userId }}</h2>
-        <router-view />
-    </div>
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto flex flex-col">
-            <div class="lg:w-4/6 mx-auto">
+            <div class="lg:w-5/6 mx-auto">
                 <div class="rounded-lg h-64 overflow-hidden">
                     <img alt="content" class="object-cover object-center h-full w-full"
                         src="https://dummyimage.com/1200x500" />
@@ -22,9 +18,9 @@
                         </div>
                         <div class="flex flex-col items-center text-center justify-center">
                             <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">
-                                Phoebe Caulfield
+                                {{ $route.params.userId }}
                             </h2>
-                            <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
+                            <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
                             <p class="text-base">
                                 Raclette knausgaard hella meggs normcore williamsburg enamel pin
                                 sartorial venmo tbh hot chicken gentrify portland.
@@ -44,7 +40,7 @@
                             intelligentsia pabst before they sold out four loko. 3 wolf moon
                             brooklyn.
                         </p>
-                        <a class="text-indigo-500 inline-flex items-center">Learn More
+                        <a class="text-pink-500 inline-flex items-center">Learn More
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
