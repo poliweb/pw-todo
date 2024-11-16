@@ -5,7 +5,12 @@
         </div>
         <h1>UsernameArticlesBlock.vue</h1>
 
-        <div v-if="isLoading">Загрузка...</div>
+        <div v-if="isLoading">
+            <div class="flex flex-col items-center justify-center">
+                <div class="loader"></div>
+                <p>Loading articles...</p>
+            </div>
+        </div>
         <div v-else-if="noArticlesFound">Статьи не найдены</div>
         <div v-else>
             <ul>
@@ -60,4 +65,5 @@ onMounted(async () => {
 
 
 
-<style scoped></style>
+<style scoped>
+</style>
