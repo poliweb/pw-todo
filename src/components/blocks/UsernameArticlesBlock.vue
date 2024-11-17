@@ -3,7 +3,7 @@
         <!-- Header -->
         <div v-if="userArticles.length > 0"
             class="flex flex-col items-center justify-center rounded-lg w-full h-64 bg-pink-500 overflow-hidden p-4">
-            <h2 class="text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] text-white text-center font-bold">
+            <h2 class="text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] 2xl:text-[70px] text-white text-center font-bold">
                 {{ userArticles[0]?.user?.name }}`s <UsernameArticlesTotal /> 
             </h2>
         </div>
