@@ -1,6 +1,6 @@
 <template>
     <div v-if="userArticlesTotal.length > 0">
-        <span class="text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] font-bold">articles - {{ userArticlesTotal.length }} total</span>
+        <span class="text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] 2xl:text-[70px] font-bold">articles - {{ userArticlesTotal.length }} total</span>
     </div>
     <div v-else-if="noArticlesFound">0 total</div>
 </template>
