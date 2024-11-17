@@ -1,7 +1,7 @@
 <template>
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-col">
-      <div v-if="article" class="lg:w-5/6 mx-auto">
+      <div v-if="article" class="w-full lg:w-5/6 mx-auto">
         <div class="rounded-lg overflow-hidden">
           <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
             class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
@@ -19,27 +19,30 @@
           <div class="w-full md:w-1/3 text-center md:pr-8 md:py-8">
             <div class="sticky top-8">
               <!-- ============== -->
-              <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400 hover:scale-110  transition duration-300 ease-in-out">
+              <div
+                class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400 hover:scale-110  transition duration-300 ease-in-out">
                 <router-link :to="{
-                        name: 'UserDetail',
-                        params: {
-                            userId: user.username, // Значение `userId` из данных статьи
-                        },
-                    }">
-                <img :src="user.profile_image" :alt="user.name" class="rounded-full shadow-2xl transition duration-300 ease-in-out" />
+                  name: 'UserDetail',
+                  params: {
+                    userId: user.username, // Значение `userId` из данных статьи
+                  },
+                }">
+                  <img :src="user.profile_image" :alt="user.name"
+                    class="rounded-full shadow-2xl transition duration-300 ease-in-out" />
                 </router-link>
               </div>
               <div class="flex flex-col items-center text-center justify-center">
                 <router-link :to="{
-                        name: 'UserDetail',
-                        params: {
-                            userId: user.username, // Значение `userId` из данных статьи
-                        },
-                    }">
-                <h2 class="font-medium title-font mt-4 text-gray-900 hover:text-pink-500 text-xl lg:text-2xl transition duration-300 ease-in-out">
-                  {{ user.name }}
-                  <span class="text-base lg:text-xl text-gray-500">@{{ user.username }}</span>
-                </h2>
+                  name: 'UserDetail',
+                  params: {
+                    userId: user.username, // Значение `userId` из данных статьи
+                  },
+                }">
+                  <h2
+                    class="font-medium title-font mt-4 text-gray-900 hover:text-pink-500 text-xl lg:text-2xl transition duration-300 ease-in-out">
+                    {{ user.name }}
+                    <span class="text-base lg:text-xl text-gray-500">@{{ user.username }}</span>
+                  </h2>
                 </router-link>
                 <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
                 <p v-if="user.summary" class="text-base my-4">
@@ -206,7 +209,7 @@ onMounted(async () => {
   color: #ec4899;
 }
 
-pre {
+.content pre {
   background: #29292e;
   border-radius: 2px;
   overflow: auto;
@@ -216,7 +219,7 @@ pre {
   font-size: 13px;
 }
 
-pre code {
+.content pre code {
   display: block;
   /* Делаем элемент блочным */
   max-width: 100%;
@@ -232,7 +235,7 @@ pre code {
   /* Используем моноширинный шрифт */
 }
 
-p code {
+.content p code {
   display: block;
   /* Делаем элемент блочным */
   max-width: 100%;
@@ -250,8 +253,12 @@ p code {
   /* Используем моноширинный шрифт */
 }
 
-p a img {
+.content p a img {
   width: 100%;
+}
+
+.content ul li  {
+  overflow: hidden;
 }
 
 .highlight__panel {
@@ -262,6 +269,7 @@ p a img {
   pre {
     font-size: 15px;
   }
-}
 
+
+}
 </style>
