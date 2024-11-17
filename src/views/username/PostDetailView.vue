@@ -16,7 +16,7 @@
         </div>
 
         <div class="flex flex-col md:flex-row mt-10">
-          <div class="md:w-1/3 text-center md:pr-8 md:py-8">
+          <div class="w-full md:w-1/3 text-center md:pr-8 md:py-8">
             <div class="sticky top-8">
               <!-- ============== -->
               <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400 hover:scale-110  transition duration-300 ease-in-out">
@@ -94,7 +94,7 @@
             </div>
           </div>
           <div
-            class="md:w-2/3 md:pl-8 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
+            class="w-full md:w-2/3 md:pl-8 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
             <div class="content" v-html="article.body_html" />
           </div>
         </div>
@@ -248,6 +248,10 @@ p code {
   border-radius: 5px;
   font-family: monospace;
   /* Используем моноширинный шрифт */
+}
+
+p a img {
+  width: 100%;
 }
 
 .highlight__panel {
