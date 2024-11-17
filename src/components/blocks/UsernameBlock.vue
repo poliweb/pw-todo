@@ -10,7 +10,9 @@
     <!-- Ошибка -->
     <template v-else-if="errorMessage">
         <div class="text-center text-red-500">
-            <p>Error: {{ errorMessage }}</p>
+            <p>Error: {{ errorMessage }}!</p>
+            <p>There may be no internet connection</p>
+            <p>Try again later.</p>
         </div>
     </template>
     <template v-else>
@@ -18,8 +20,8 @@
             <div>
                 <!-- Аватар пользователя -->
                 <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-                    
-                        <img :src="user.profile_image" :alt="user.name" class="rounded-full shadow-2xl" />
+
+                    <img :src="user.profile_image" :alt="user.name" class="rounded-full shadow-2xl" />
 
                 </div>
 
