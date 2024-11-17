@@ -139,7 +139,7 @@ const fetchArticles = async () => {
     isLoading.value = true;
     errorMessage.value = ''; // Сброс ошибки перед новым запросом
     try {
-        const response = await fetch('https://dev.to/api/articles/?tag=nuxt&per_page=21');
+        const response = await fetch('https://dev.to/api/articles/?tag=nuxt');
 
         if (!response.ok) {
             throw new Error('Failed to fetch articles / Не удалось получить продукты');
