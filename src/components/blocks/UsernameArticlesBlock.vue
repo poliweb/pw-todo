@@ -3,7 +3,7 @@
         <!-- Header -->
         <div v-if="userArticles.length > 0"
             class="flex flex-col items-center justify-center rounded-lg w-full h-64 bg-pink-500 overflow-hidden p-4">
-            <h2 class="text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] 2xl:text-[70px] text-white text-center font-bold">
+            <h2 class="simvolText_18 text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] 2xl:text-[70px] text-white text-center font-bold">
                 {{ userArticles[0]?.user?.name }}`s <UsernameArticlesTotal /> 
             </h2>
         </div>
@@ -80,7 +80,13 @@ onMounted(async () => {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.text_vw {
-    font-size: 3vw;
+.simvolText_18 {
+    width: 18ch;
+    /* Ограничение в 20 символов */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+
+
 </style>
