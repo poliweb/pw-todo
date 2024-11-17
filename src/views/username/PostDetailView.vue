@@ -9,8 +9,6 @@
             class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
         </div>
 
-        <!-- Title -->
-        <h2 class="text-3xl font-bold md:text-7xl my-8">{{ article.title }}</h2>
         <div class="flex flex-wrap gap-2">
           <span v-for="tag in article.tags" :key="tag" class="text-lg text-pink-500">#{{ tag }}</span>
         </div>
@@ -98,6 +96,10 @@
           </div>
           <div
             class="w-full md:w-2/3 md:pl-8 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
+            <!-- Title -->
+            <h2 class="text-2xl font-bold md:text-4xl my-8">{{ article.title }}</h2>
+            <div class="mb-4 text-lg">Publish Date: <span class="text-pink-500 font-bold">{{
+              article.readable_publish_date }}</span></div>
             <div class="content" v-html="article.body_html" />
           </div>
         </div>
@@ -257,7 +259,7 @@ onMounted(async () => {
   width: 100%;
 }
 
-.content ul li  {
+.content ul li {
   overflow: hidden;
 }
 
