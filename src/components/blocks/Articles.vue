@@ -19,7 +19,9 @@
         <!-- Ошибка -->
         <template v-else-if="errorMessage">
             <div class="text-center text-red-500">
-                <p>Error: {{ errorMessage }}</p>
+                <p>Error: {{ errorMessage }}!</p>
+                <p>There may be no internet connection</p>
+                <p>Try again later.</p>
             </div>
         </template>
 
