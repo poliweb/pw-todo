@@ -1,8 +1,7 @@
 <template>
     <div class="container px-5 py-24 mx-auto min-h-screen">
         <div class="text-center mb-[60px]">
-            <h3
-                class="text-[#000] font-medium uppercase pb-4 text-xl pb-4 mb-4">
+            <h3 class="text-[#000] font-medium uppercase pb-4 text-xl pb-4 mb-4">
                 Updates From Our Shop
             </h3>
             <p class="text-[#999] text-[13px]">
@@ -24,7 +23,7 @@
             </div>
         </template>
 
-        <!-- Список продуктов -->
+        <!-- Список cтатей -->
         <template v-else-if="articles && articles.length">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
                 <div v-for="article in articles" :key="article.id" class="card item-article">
@@ -36,20 +35,20 @@
                                 userId: article.user.username, // Значение `userId` из данных статьи
                                 postId: article.id,      // Значение `postId` из данных статьи
                             },
-                        }" >
-                        <div class="relative overflow-hidden">
-                            <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
-                                class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
-                            <img v-else :src="article.social_image" :alt="article.title"
-                                class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
-                            <div class="absolute bottom-0 left-0 flex items-center gap-4">
-                                <img :src="article.user.profile_image_90" :alt="article.user.name"
-                                    class="rounded-full w-10 h-10" />
-                                <div class="bg-pink-600 px-2 py-1 text-white rounded"><span class="">{{
-                                    article.user.name }}</span></div>
-                            </div>
+                        }">
+                            <div class="relative overflow-hidden">
+                                <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
+                                    class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
+                                <img v-else :src="article.social_image" :alt="article.title"
+                                    class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
+                                <div class="absolute bottom-0 left-0 flex items-center gap-4">
+                                    <img :src="article.user.profile_image_90" :alt="article.user.name"
+                                        class="rounded-full w-10 h-10" />
+                                    <div class="bg-pink-600 px-2 py-1 text-white rounded"><span class="">{{
+                                        article.user.name }}</span></div>
+                                </div>
 
-                        </div>
+                            </div>
                         </router-link>
                     </div>
                     <div class="flex flex-wrap gap-x-4">
@@ -60,13 +59,13 @@
                         </div>
                     </div>
                     <router-link :to="{
-                            name: 'PostDetail',
-                            params: {
-                                userId: article.user.username, // Значение `userId` из данных статьи
-                                postId: article.id,      // Значение `postId` из данных статьи
-                            },
-                        }" >
-                    <h2 class="card-title ">{{ article.title }}</h2>
+                        name: 'PostDetail',
+                        params: {
+                            userId: article.user.username, // Значение `userId` из данных статьи
+                            postId: article.id,      // Значение `postId` из данных статьи
+                        },
+                    }">
+                        <h2 class="card-title ">{{ article.title }}</h2>
                     </router-link>
                     <p class="card-description font-light">{{ article.description }}</p>
                     <!-- Блок информации -->
@@ -78,13 +77,15 @@
                                 userId: article.user.username, // Значение `userId` из данных статьи
                                 postId: article.id,      // Значение `postId` из данных статьи
                             },
-                        }" class="text-pink-500 hover:text-pink-800 inline-flex items-center md:mb-2 lg:mb-0 transition duration-700 ease-in-out">
+                        }"
+                            class="text-pink-500 hover:text-pink-800 inline-flex items-center md:mb-2 lg:mb-0 transition duration-700 ease-in-out">
                             Learn More
                         </router-link>
 
                         <span
                             class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                            <IconsFavoriteBase v-if="article.positive_reactions_count > 0" class="w-4 h-4 mr-1 text-pink-500" />
+                            <IconsFavoriteBase v-if="article.positive_reactions_count > 0"
+                                class="w-4 h-4 mr-1 text-pink-500" />
                             <IconsFavorite v-else class="w-4 h-4 mr-1" />
                             {{ article.positive_reactions_count }}
                         </span>
@@ -107,57 +108,80 @@
         <template v-else>
             <p class="text-center">No articles available.</p>
         </template>
+        <!-- Индикатор загрузки следующей страницы -->
+        <div ref="loadMoreRef" class="flex justify-center mt-8">
+            <div v-if="isLoading && currentPage > 1">
+                <div class="loader"></div>
+                <p>Loading more articles...</p>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
+import { useIntersectionObserver } from '@vueuse/core';
 import IconsFavorite from "../icons/Favorite.vue";
 import IconsFavoriteBase from "../icons/favoriteBase.vue";
 import iconChat from "../icons/iconChat.vue";
 import IconChatBase from '../icons/iconChatBase.vue';
 
 const articles = ref([]);
-const isLoading = ref(true);
+const isLoading = ref(false);
 const errorMessage = ref('');
-const wordLimit = 10; // Лимит на количество слов
-const charLimit = 50; // Лимит на количество символов (включая пробелы)
+const currentPage = ref(1);
+const loadMoreRef = ref(null);
+const hasMore = ref(true);
 
-
-const truncateDescription = (description) => {
-    if (description.length > charLimit) {
-        return description.slice(0, charLimit) + '...'; // Обрезаем по символам и добавляем троеточие
-    }
-    return description;
-};
-
-
-
-// Вытягивание даных из файла json 
-// Ссылка на фейковые товары https://dummyjson.com/articles?limit=20&skip=20&select=title,price,description,thumbnail
 const fetchArticles = async () => {
-    isLoading.value = true;
-    errorMessage.value = ''; // Сброс ошибки перед новым запросом
-    try {
-        const response = await fetch('https://dev.to/api/articles/?tag=nuxt');
+    if (isLoading.value || !hasMore.value) return;
 
-        if (!response.ok) {
-            throw new Error('Failed to fetch articles / Не удалось получить продукты');
+    isLoading.value = true;
+    errorMessage.value = '';
+    try {
+        console.log(`Fetching page: ${currentPage.value}`);
+        const response = await fetch(`https://dev.to/api/articles?tag=nuxt&state=rising&page=${currentPage.value}`);
+        if (!response.ok) throw new Error('Failed to fetch articles');
+
+        const newArticles = await response.json();
+
+        if (newArticles.length === 0) {
+            hasMore.value = false;
+        } else {
+            articles.value.push(...newArticles);
         }
-        const responseData = await response.json();
-        articles.value = responseData;
-        // console.log(articles.value);
     } catch (error) {
-        errorMessage.value = error.message || 'An unknown error occurred / Произошла неизвестная ошибка';
+        errorMessage.value = error.message;
     } finally {
         isLoading.value = false;
     }
 };
 
-onMounted(() => {
-    fetchArticles();
+const loadMoreArticles = () => {
+    if (hasMore.value) {
+        currentPage.value += 1;
+        fetchArticles();
+    }
+};
+
+onMounted(async () => {
+    await fetchArticles();
+    await nextTick();
+
+    if (!loadMoreRef.value) {
+        console.error('Element `loadMoreRef` is not initialized');
+        return;
+    }
+
+    // Используем useIntersectionObserver вместо watchEffect
+    useIntersectionObserver(loadMoreRef, ([entry]) => {
+        if (entry.isIntersecting && !isLoading.value && hasMore.value) {
+            loadMoreArticles();
+        }
+    });
 });
 </script>
+
 
 <style scoped>
 .card {
