@@ -1,6 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-</script>
 <template>
   <header class="bg-white text-gray-600 body-font">
   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center space-y-4">
@@ -19,20 +16,19 @@ import { RouterLink, RouterView } from "vue-router";
         <path d="M5 12h14M12 5l7 7-7 7"></path>
       </svg>
     </button> -->
-    <IconButton/>
+    <!-- <IconButton/> -->
+     <TagFilter/>
   </div>
 </header>
 </template>
 
-<script>
+<script setup>
+import { RouterLink, RouterView } from "vue-router";
 import IconLogo from "./icons/IconLogo.vue";
 import IconButton from "./IconButton.vue";
-export default {
-  components: {
-    IconLogo,
-    IconButton,
-  },
-};
+import TagFilter from "./TagFilter.vue";
+
+
 </script>
 
 <style scoped>

@@ -59,6 +59,15 @@ const router = createRouter({
       }
     },
     {
+      path: '/tag/:tagId', // Динамический маршрут с параметрами `userId` и `postId`
+      name: 'TagDetail',
+      component: () => import('../views/tag/TagArticlesView.vue'),
+      props: true,
+      meta: {
+        title:  'Tag Detail'
+      }
+    },
+    {
       path: '/thanks',
       name: 'thanks',
       component: () => import('../views/thanks.vue'),
