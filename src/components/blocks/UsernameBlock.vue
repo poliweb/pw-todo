@@ -123,6 +123,11 @@ onMounted(async () => {
     } finally {
         isLoading.value = false
     }
+
+    function showNotFoundError() {
+        // Перенаправляем на страницу 404
+        router.push('/404');
+    }
 })
 </script>
 
