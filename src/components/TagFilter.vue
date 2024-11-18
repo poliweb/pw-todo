@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center gap-4">
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
         <input @keyup.enter="handleEnter" type="text" v-model="message" placeholder="write a tag"
             class="bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
         <router-link v-if="message" :key="lowerCasedMessage" :to="'/tag/' + lowerCasedMessage" class="btn-primary" @click="clearMessage">
