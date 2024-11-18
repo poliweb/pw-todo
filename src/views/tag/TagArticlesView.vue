@@ -46,7 +46,7 @@ async function fetchTagArticles() {
     errorMessage.value = null
 
     try {
-        const response = await fetch(`https://dev.to/api/articles?tag=${tagId}`)
+        const response = await fetch(`https://dev.to/api/articles?tag=${tagId}&top=365`)
 
         if (!response.ok) {
             noArticlesFound.value = true
