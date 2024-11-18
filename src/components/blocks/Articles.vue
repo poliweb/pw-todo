@@ -10,7 +10,7 @@
         </div>
         <!-- Прелоудер -->
         <template v-if="isLoading">
-            <div class="flex flex-col items-center justify-center">
+            <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out">
                 <div class="loader"></div>
                 <p>Loading articles...</p>
             </div>
@@ -18,7 +18,7 @@
 
         <!-- Ошибка -->
         <template v-else-if="errorMessage">
-            <div class="text-center text-red-500">
+            <div class="text-center text-red-500 transition duration-300 ease-in-out">
                 <p>Error: {{ errorMessage }}!</p>
                 <p>There may be no internet connection</p>
                 <p>Try again later.</p>
@@ -28,7 +28,7 @@
         <!-- Список cтатей -->
         <template v-else-if="articles && articles.length">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
-                <div v-for="article in articles" :key="article.id" class="card item-article">
+                <div v-for="article in articles" :key="article.id" class="card item-article transition duration-300 ease-in-out">
                     <div class="card-image-container relative overflow-hidden mb-4 ">
                         <!-- Блок фото -->
                         <router-link :to="{
@@ -111,7 +111,7 @@
             <p class="text-center">No articles available.</p>
         </template>
         <!-- Индикатор загрузки следующей страницы -->
-        <div ref="loadMoreRef" class="flex justify-center mt-8">
+        <div ref="loadMoreRef" class="flex justify-center mt-8 transition duration-300 ease-in-out">
             <div v-if="isLoading && currentPage > 1">
                 <div class="loader"></div>
                 <p>Loading more articles...</p>
