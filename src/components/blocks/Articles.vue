@@ -17,7 +17,7 @@
         </template>
 
         <!-- Ошибка -->
-        <template v-else-if="errorMessage">
+        <template v-if="errorMessage">
             <div class="text-center text-red-500 transition duration-300 ease-in-out">
                 <p>Error: {{ errorMessage }}!</p>
                 <p>There may be no internet connection</p>
@@ -134,6 +134,8 @@ const errorMessage = ref('');
 const currentPage = ref(1);
 const loadMoreRef = ref(null);
 const hasMore = ref(true);
+const MAX_PAGES = 12;
+
 
 const fetchArticles = async () => {
     if (isLoading.value || !hasMore.value) return;
@@ -160,7 +162,7 @@ const fetchArticles = async () => {
 };
 
 const loadMoreArticles = () => {
-    if (hasMore.value) {
+    if (hasMore.value && currentPage.value < MAX_PAGES) {
         currentPage.value += 1;
         fetchArticles();
     }
@@ -180,6 +182,8 @@ onMounted(async () => {
         if (entry.isIntersecting && !isLoading.value && hasMore.value) {
             loadMoreArticles();
         }
+    },{
+        rootMargin: '300px', // Загрузить заранее, когда элемент находится на 200px ниже видимой области
     });
 });
 </script>
