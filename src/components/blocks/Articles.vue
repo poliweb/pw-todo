@@ -177,7 +177,7 @@ onMounted(async () => {
         return;
     }
 
-    // Используем useIntersectionObserver вместо watchEffect
+    // Используем useIntersectionObserver для ленивой загрузки
     useIntersectionObserver(loadMoreRef, ([entry]) => {
         if (entry.isIntersecting && !isLoading.value && hasMore.value) {
             loadMoreArticles();
