@@ -1,11 +1,11 @@
 <template>
     <div class="container px-5 py-24 mx-auto min-h-screen">
-        <div class="text-center mb-[60px]">
-            <h3 class="text-[#000] font-medium uppercase pb-4 text-xl pb-4 mb-4">
-                Updates From Our Shop
-            </h3>
-            <p class="text-[#999] text-[13px]">
-                In a freak mishap ranger and its pilot captain william buck rogers are blown
+        <div class="flex flex-col text-center w-full mb-12">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+                Popular articles Dev.to — the best materials from the IT community
+            </h1>
+            <p class="lg:w-2/4 mx-auto leading-relaxed text-base">
+                Find out the latest news and best practices in programming collected from the platform Dev.to . Use tag filters to find articles that match your interests and objectives.
             </p>
         </div>
         <!-- Прелоудер -->
@@ -28,7 +28,8 @@
         <!-- Список cтатей -->
         <template v-else-if="articles && articles.length">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
-                <div v-for="article in articles" :key="article.id" class="card item-article transition duration-300 ease-in-out">
+                <div v-for="article in articles" :key="article.id"
+                    class="card item-article transition duration-300 ease-in-out">
                     <div class="card-image-container relative overflow-hidden mb-4 ">
                         <!-- Блок фото -->
                         <router-link :to="{
@@ -182,7 +183,7 @@ onMounted(async () => {
         if (entry.isIntersecting && !isLoading.value && hasMore.value) {
             loadMoreArticles();
         }
-    },{
+    }, {
         rootMargin: '300px', // Загрузить заранее, когда элемент находится на 200px ниже видимой области
     });
 });
