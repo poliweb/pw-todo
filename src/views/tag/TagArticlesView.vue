@@ -14,10 +14,7 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const tag = ref('')
 
-// Получаем параметр "tag" из маршрута
-onMounted(() => {
-  tag.value = route.params.tagId || 'Не указан'
-})
+
 
 </script>
 
