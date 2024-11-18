@@ -14,16 +14,7 @@ const updateSW = registerSW({
 
 const app = createApp(App)
 
-// Глобальный обработчик ошибок
-app.config.errorHandler = (err, instance, info) => {
-  console.error('Ошибка:', err)
-  // Перенаправление на страницу 401
-  if (err.message.includes('Unauthorized')) {
-    router.push('/401')
-  } else {
-    router.push('/error')
-  }
-}
+
 
 app.use(createPinia())
 app.use(router)

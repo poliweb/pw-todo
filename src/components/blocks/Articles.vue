@@ -1,13 +1,6 @@
 <template>
-    <div class="container px-5 py-24 mx-auto min-h-screen">
-        <div class="flex flex-col text-center w-full mb-12">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-                Popular articles Dev.to — the best materials from the IT community
-            </h1>
-            <p class="lg:w-2/4 mx-auto leading-relaxed text-base">
-                Find out the latest news and best practices in programming collected from the platform Dev.to . Use tag filters to find articles that match your interests and objectives.
-            </p>
-        </div>
+
+        
         <!-- Прелоудер -->
         <template v-if="isLoading">
             <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out">
@@ -118,7 +111,7 @@
                 <p>Loading more articles...</p>
             </div>
         </div>
-    </div>
+
 </template>
 
 <script setup>

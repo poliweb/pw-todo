@@ -4,7 +4,7 @@ import {
 } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFound from '../views/404.vue';
-import ErrorPage from '../views/Error.vue';
+
 
 
 const router = createRouter({
@@ -78,9 +78,8 @@ const router = createRouter({
       }
     },
    
-    { path: '/error', name: 'ErrorPage', component: ErrorPage, meta: { title: 'ERROR!' } },
+    // { path: '/error', name: 'ErrorPage', component: ErrorPage, meta: { title: 'ERROR!' } },
     { path: '/404', name: 'NotFound', component: NotFound, meta: { title: '404 - Page Not Found' } },
-    { path: '/:catchAll(.*)', redirect: '/error' } // Перехват всех других ошибок
   ],
 
   scrollBehavior(to, from, savedPosition) {

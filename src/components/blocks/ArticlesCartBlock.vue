@@ -17,8 +17,8 @@
                     <div class="absolute bottom-0 left-0 flex items-center gap-4">
                         <img :src="article.user.profile_image_90" :alt="article.user.name"
                             class="rounded-full w-10 h-10" />
-                        <div class="bg-pink-600 px-2 py-1 text-white rounded"><span class="">{{
-                            article.user.name }}</span></div>
+                        <div class="bg-pink-600 px-2 py-1 text-white rounded btn-primary"><span class="">{{
+                                article.user.name }}</span></div>
                     </div>
 
                 </div>
@@ -26,9 +26,10 @@
         </div>
         <div class="flex flex-wrap gap-x-4">
             <div v-for="tag in article.tag_list" :key="tag">
-                <h2
-                    class="tracking-widest text-xs title-font font-medium text-pink-500 hover:text-pink-800 mb-1 uppercase transition duration-700 ease-in-out">
-                    #{{ tag }}</h2>
+                <router-link :to="`/tag/${tag}`" class="tracking-widest text-xs title-font font-medium text-pink-500 hover:text-pink-800 mb-1
+                    uppercase transition duration-700 ease-in-out">
+                    #{{ tag }}
+                </router-link>
             </div>
         </div>
         <router-link :to="{
@@ -76,7 +77,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import IconsFavorite from "../icons/Favorite.vue";
 import IconsFavoriteBase from "../icons/favoriteBase.vue";
 import iconChat from "../icons/iconChat.vue";
