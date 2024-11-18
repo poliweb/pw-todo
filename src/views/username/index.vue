@@ -18,8 +18,15 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import UsernameBlock from '@/components/blocks/UsernameBlock.vue'
 import UsernameArticlesBlock from '@/components/blocks/UsernameArticlesBlock.vue'
+
+const router = useRouter();
+
+function goToNotFound() {
+  router.push('/404');
+}
 
 </script>
 

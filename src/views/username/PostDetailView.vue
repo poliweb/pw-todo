@@ -165,6 +165,11 @@ onMounted(async () => {
     }
   } catch (error) {
     console.error('Ошибка при загрузке статьи:', error)
+    if (error.message.includes('Unauthorized')) {
+      router.push('/401');
+    } else {
+      router.push('/error');
+    }
     showNotFoundError()
   } finally {
     isLoading.value = false
