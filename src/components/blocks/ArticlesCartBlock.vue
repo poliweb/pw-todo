@@ -24,10 +24,9 @@
                 </div>
             </router-link>
         </div>
-        <div class="flex flex-wrap gap-x-4">
-            <div v-for="tag in article.tag_list" :key="tag">
-                <router-link :to="`/tag/${tag}`" class="tracking-widest text-xs title-font font-medium text-pink-500 hover:text-pink-800 mb-1
-                    uppercase transition duration-700 ease-in-out">
+        <div class="flex flex-wrap gap-2 mb-4">
+            <div v-for="tag in article.tag_list" :key="tag" class="">
+                <router-link :to="`/tag/${tag}`" class="tag-link">
                     #{{ tag }}
                 </router-link>
             </div>
