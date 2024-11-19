@@ -9,8 +9,8 @@
             class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
         </div>
 
-        <div class="flex flex-wrap gap-2">
-          <span v-for="tag in article.tags" :key="tag" class="text-lg text-pink-500">#{{ tag }}</span>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <router-link :to="`/tag/${tag}`" class="tag-link" v-for="tag in article.tags" :key="tag" >#{{ tag }}</router-link>
         </div>
 
         <div class="flex flex-col md:flex-row mt-10">
