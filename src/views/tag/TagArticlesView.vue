@@ -1,41 +1,46 @@
 <template>
-    <div class="w-full  bg-pink-500">
+    <div class="w-full bg-pink-500">
         <div class="container px-5 py-24 mx-auto">
-            <!-- Блок, когда tagId отсутствует -->
-            <div v-if="!articles.length || !articles[0].tag_list || articles[0].tag_list.length === 0">
+            <!-- Прелоудер -->
+            <template v-if="isLoading">
+                <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out">
+                    <div class="loader"></div>
+                    <p>Loading articles...</p>
+                </div>
+            </template>
+
+            <!-- Ошибка или пустой список тегов -->
+            <template v-else-if="!articles.length || !articles[0].tag_list?.length">
                 <div class="flex items-start gap-4">
                     <h2 class="uppercase text-white text-left text-3xl font-bold">
                         Tag #{{ route.params.tagId }} not found!
                     </h2>
                     <IconDev class="w-6 h-6 text-white mt-1" />
                 </div>
-            </div>
-            <div v-else class="">
+            </template>
+
+            <!-- Основной блок с данными -->
+            <template v-else-if="articles[0].tag_list?.length">
                 <div class="flex items-start gap-4">
-                    <h2 class="uppercase text-white text-left text-3xl font-bold">Articles by Tag #{{
-                        route.params.tagId }}
+                    <h2 class="uppercase text-white text-left text-3xl font-bold">
+                        Articles by Tag #{{ route.params.tagId }}
                     </h2>
                     <IconDev class="w-6 h-6 text-white mt-1" />
                 </div>
                 <p class="text-white w-full md:w-1/3 mt-4">
                     Browse our collection of articles on various topics related to IT technologies. Dive in and explore something new!
                 </p>
-            </div>
+            </template>
         </div>
     </div>
+
     <div class="container px-5 py-24 mx-auto min-h-screen">
-        <!-- Прелоудер -->
-        <template v-if="isLoading">
-            <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out">
-                <div class="loader"></div>
-                <p>Loading articles...</p>
-            </div>
-        </template>
-        <!-- Список cтатей -->
-        <template v-if="articles && articles.length">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
-                <div v-for="article in articles" :key="article.id" class="">
-                    <articles-cart-block :article="article"></articles-cart-block>
+
+        <!-- Список статей -->
+        <template v-if="articles.length">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div v-for="article in articles" :key="article.id">
+                    <articles-cart-block :article="article" />
                 </div>
             </div>
         </template>
@@ -49,9 +54,19 @@
             </div>
         </template>
 
-        <!-- Сообщение о пустом списке продуктов -->
-        <template v-else>
-            <p class="text-center text-2xl">No articles available.</p>
+        <!-- Пустой список статей -->
+        <template v-else-if="noArticlesFound">
+            <div>
+                <p class="text-center text-2xl">No articles available.</p>
+                <p class="text-center text-xl">
+                    My favorite tags:
+                    <router-link to="/tag/nuxt" class="tag-link">#Nuxt</router-link>
+                    <router-link to="/tag/vue" class="tag-link">#Vue</router-link>
+                    <router-link to="/tag/javascript" class="tag-link">#JavaScript</router-link>
+                    <router-link to="/tag/laravel" class="tag-link">#Laravel</router-link>
+                    <router-link to="/tag/hacking" class="tag-link">#Hacking</router-link>
+                </p>
+            </div>
         </template>
 
         <!-- Индикатор загрузки следующей страницы -->
@@ -61,7 +76,6 @@
                 <p>Loading more articles...</p>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -73,6 +87,7 @@ import ArticlesCartBlock from '@/components/blocks/ArticlesCartBlock.vue';
 import IconDev from '@/components/icons/iconDev.vue';
 
 const articles = ref([]);
+const isLoadingPage = ref(true);
 const isLoading = ref(false);
 const errorMessage = ref('');
 const noArticlesFound = ref(false);
@@ -123,6 +138,7 @@ const fetchArticles = async () => {
         errorMessage.value = error.message;
     } finally {
         isLoading.value = false;
+        isLoadingPage.value = false;
     }
 };
 
