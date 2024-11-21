@@ -16,7 +16,7 @@
         </div>
     </template>
     <template v-else>
-        <div class="sticky top-8">
+        <div class="sticky top-[100px]">
             <div>
                 <!-- Аватар пользователя -->
                 <div class="w-40 h-40 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
