@@ -3,7 +3,7 @@
         <span class="text-[8vw] sm:text-[3.5vw] md:text-[3.5vw] 2xl:text-[70px] font-bold">articles - {{
             userArticlesTotal.length }} total</span>
     </div>
-    <div v-else-if="noArticlesFound">0 total</div>
+    <div v-else-if="noArticlesFound">articles - 0 total</div>
     <div v-else class="flex flex-col items-center justify-center">
         <p>Loading...</p>
     </div>
