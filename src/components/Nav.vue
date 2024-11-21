@@ -19,11 +19,13 @@
 </template>
 
 <script setup>
-import IconLogo from './icons/IconLogo.vue';
-import TagFilter from './TagFilter.vue';
+import { ref, onMounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ref, onMounted } from 'vue';
+import IconLogo from './icons/IconLogo.vue';
+import TagFilter from './TagFilter.vue';
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
