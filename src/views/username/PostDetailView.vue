@@ -24,7 +24,7 @@
 
         <div class="flex flex-col md:flex-row mt-10">
           <div class="w-full md:w-1/3 text-center md:pr-8 md:py-8">
-            <div class="sticky top-8">
+            <div class="sticky top-[100px]">
               <!-- ============== -->
               <router-link :to="{
                 name: 'UserDetail',
