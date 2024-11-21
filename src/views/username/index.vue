@@ -1,7 +1,7 @@
 <template>
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto flex flex-col">
-            <div class="w-full lg:w-5/6 mx-auto">
+            <div class="w-full  mx-auto">
                 <div class="flex flex-col md:flex-row mt-10">
                     <div class="md:w-1/3 text-center md:pr-8 md:py-8">
                         <!-- Avatar -->

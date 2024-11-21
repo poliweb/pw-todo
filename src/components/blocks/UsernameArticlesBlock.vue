@@ -25,7 +25,7 @@
             <!-- <ul>
                 <li v-for="article in userArticles" :key="article.id">{{ article.title }}</li>
             </ul> -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 2xl:grid-cols-2   gap-4">
                 <UserArticlesCartBlock v-for="article in userArticles" :article="article" :key="article.id" />
             </div>
         </div>

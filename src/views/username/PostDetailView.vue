@@ -1,7 +1,15 @@
 <template>
+   <!-- Прелоудер -->
+   <template v-if="isLoading">
+    <div class="flex flex-col items-center justify-center min-h-screen">
+      <div class="loader"></div>
+      <p>Loading articles...</p>
+    </div>
+  </template>
+
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto flex flex-col">
-      <div v-if="article" class="w-full lg:w-5/6 mx-auto">
+      <div v-if="article" class="w-full mx-auto">
         <div class="rounded-lg overflow-hidden">
           <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
             class="w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
@@ -106,13 +114,6 @@
       </div>
     </div>
   </section>
-  <!-- Прелоудер -->
-  <template v-if="isLoading">
-    <div class="flex flex-col items-center justify-center min-h-screen">
-      <div class="loader"></div>
-      <p>Loading articles...</p>
-    </div>
-  </template>
 </template>
 
 <script setup>
