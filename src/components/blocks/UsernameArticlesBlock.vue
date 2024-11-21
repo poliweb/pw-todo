@@ -22,9 +22,12 @@
         </div>
         <div v-else-if="noArticlesFound">No articles found</div>
         <div v-else>
-            <ul>
+            <!-- <ul>
                 <li v-for="article in userArticles" :key="article.id">{{ article.title }}</li>
-            </ul>
+            </ul> -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
+                <UserArticlesCartBlock v-for="article in userArticles" :article="article" :key="article.id" />
+            </div>
         </div>
     </div>
 </template>
@@ -33,6 +36,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import UsernameArticlesTotal from '@/components/blocks/UsernameArticlesTotal.vue';
+import UserArticlesCartBlock from '@/components/blocks/ArticlesCartBlock.vue';
 
 const isLoading = ref(true)
 const userArticles = ref([])
