@@ -1,15 +1,19 @@
 <template>
-    <section>
+    <section class="bg-pink-500">
         <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-col text-center w-full mb-12">
-                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-                    Popular articles Dev To — the best materials from the IT community
-                </h1>
-                <p class="lg:w-2/4 mx-auto leading-relaxed text-base">
+            <div class="flex flex-col text-white text-left w-full">
+                <h2 class="uppercase text-white text-left text-3xl font-bold mb-4">
+                    Popular Articles on Dev.To: Top Picks from the IT Community
+                </h2>
+                <p class="lg:w-1/2 leading-relaxed text-base">
                     Find out the latest news and best practices in programming collected from the platform Dev.to . Use
                     tag filters to find articles that match your interests and objectives.
                 </p>
             </div>
+        </div>
+    </section>
+    <section>
+        <div class="container px-5 py-24 mx-auto">
 
             <!-- Прелоудер -->
             <template v-if="isLoading">
