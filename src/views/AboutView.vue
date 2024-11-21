@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white text-gray-600 body-font">
+  <section class="first bg-white text-gray-600 body-font mt-[99px]">
     <div class="container px-5 py-24 mx-auto flex flex-col">
       <div class="lg:w-5/6 mx-auto">
         <div class="hidden sm:block rounded-lg h-64 overflow-hidden">
@@ -8,7 +8,7 @@
         </div>
         <div class="flex flex-col sm:flex-row mt-10">
           <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8 relative">
-            <div class="sticky top-0">
+            <div class="sticky top-[100px]">
               <div
                 class="w-40 h-40 rounded-lg sm:rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
                 <img src="https://res.cloudinary.com/poliweb/image/upload/c_fit,w_160/v1639893378/avatar_my_xrxg6d.webp"

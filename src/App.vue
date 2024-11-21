@@ -1,11 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import TopNav from "./components/TopNav.vue";
+import Nav from "./components/Nav.vue";
 import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <TopNav />
+  <Nav />
   <RouterView />
   <Footer />
 </template>

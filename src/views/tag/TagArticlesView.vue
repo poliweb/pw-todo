@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full bg-pink-500">
+    <div class="w-full bg-pink-500 mt-[99px]">
         <div class="container px-5 py-24 mx-auto">
             <!-- Прелоудер -->
             <template v-if="isLoading">
