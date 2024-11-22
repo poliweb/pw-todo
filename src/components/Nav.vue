@@ -6,10 +6,10 @@
         <IconLogo />
       </router-link>
       <div class="md:ml-auto md:mr-auto flex flex-wrap items-center text-lg md:text-base justify-center">
-        <router-link :to="{ name: 'home' }" replace class="mr-5 hover:text-gray-900">Home</router-link>
-        <router-link :to="{ name: 'devto' }" replace class="mr-5 hover:text-gray-900">Dev To</router-link>
-        <router-link :to="{ name: 'about' }" class="mr-5 hover:text-gray-900">About Me</router-link>
-        <router-link :to="{ name: 'contact' }" class="mr-5 hover:text-gray-900">Сontact</router-link>
+        <router-link :to="{ name: 'home' }" replace class="nav-link mr-5">Home</router-link>
+        <router-link :to="{ name: 'devto' }" replace class="nav-link mr-5">Dev To</router-link>
+        <router-link :to="{ name: 'about' }" class="nav-link mr-5">About Me</router-link>
+        <router-link :to="{ name: 'contact' }" class="nav-link mr-5">Сontact</router-link>
       </div>
       <TagFilter />
     </div>
@@ -72,5 +72,40 @@ nav {
 .first {
   margin-top: 0px;
   background: lightblue;
+}
+
+/* Настройка тега А в меню */
+a.nav-link {
+  color: dimgrey !important;
+  text-decoration: none;
+  position: relative;
+}
+/* Тег А в активном састояние класс router-link-exact-active */
+a.router-link-exact-active.nav-link {
+  color: #ec4899 !important;
+}
+a.router-link-exact-active.nav-link:after {
+  left: 0;
+  width: 100%;
+  position: relative;
+}
+/* Настройка поведения Тег А при состояние псевдокласса :hover */
+a.nav-link:hover {
+  color: #ec4899 !important;
+}
+a.nav-link:after {
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #ec4899;
+  transition: width 0.4s ease 0s, left 0.4s ease 0s;
+  width: 0;
+}
+a.nav-link:hover:after {
+  width: 100%;
+  left: 0;
 }
 </style>
