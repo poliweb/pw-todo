@@ -1,38 +1,90 @@
 <template>
+
   <nav ref="nav">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center space-y-4">
+
+    <!-- Disctop menu-->
+    <div class="container  p-5  mx-auto hidden lg:flex lg:flex-row items-center space-y-4">
+
+      <!-- Logo Type -->
       <router-link :to="{ name: 'home' }" aria-label="To Home"
         class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <IconLogo />
       </router-link>
+
+      <!-- Navigation links -->
       <div class="md:ml-auto md:mr-auto flex flex-wrap items-center text-lg md:text-base justify-center">
-        <router-link :to="{ name: 'home' }" replace class="nav-link mr-5">Home</router-link>
-        <router-link :to="{ name: 'devto' }" replace class="nav-link mr-5">Dev To</router-link>
-        <router-link :to="{ name: 'about' }" class="nav-link mr-5">About Me</router-link>
-        <router-link :to="{ name: 'contact' }" class="nav-link mr-5">Сontact</router-link>
+        <NavRouterLink />
       </div>
+
+      <!-- Tag filter -->
       <TagFilter />
+
     </div>
+
+    <!-- Mobale menu -->
+    <div class="container mx-auto flex flex-row p-2 items-center justify-between gap-x-4 lg:hidden">
+
+      <!-- Logo Type -->
+      <router-link :to="{ name: 'home' }" aria-label="To Home"
+        class="flex title-font font-medium items-center text-gray-900 mb-0">
+        <IconLogo class="w-24" />
+      </router-link>
+
+      <!-- Tag filter -->
+      <TagFilter class="w-full md:w-auto" />
+
+      <!-- Burger Button -->
+      <button @click="toggleMenu" class="w-[34px] h-[40px] bg-pink-500 rounded flex flex-col items-center justify-center px-2">
+        <span v-for="i in 3" :key="i" class="w-[20px] h-[2px] bg-white mb-1"></span>
+      </button>
+
+    </div>
+     <!-- Выпадающее меню -->
+    <transition name="slide">
+      <div v-if="isMenuOpen" @click.stop class="absolute top-full left-0 w-full bg-pink-100 shadow-lg p-4 z-50">
+        <div class="flex flex-col sm:flex-row  gap-y-2">
+          <NavRouterLink :onCloseMenu="toggleMenu" />
+        </div>
+      </div>
+    </transition>
+
   </nav>
   <div class="first">
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import IconLogo from './icons/IconLogo.vue';
 import TagFilter from './TagFilter.vue';
+import NavRouterLink from './NavRouterLink.vue';
 
+// Управление состоянием меню
+const isMenuOpen = ref(false);
 
+const toggleMenu = (event) => {
+  if (event && event.stopPropagation) {
+    event.stopPropagation(); // Останавливаем всплытие, если событие доступно
+  }
+  isMenuOpen.value = !isMenuOpen.value;
+};
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
+
+const handleDocumentClick = () => {
+  closeMenu(); // Закрываем меню при клике вне его
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
 const nav = ref(null);
 
 onMounted(() => {
-  const showAnim = gsap.from(nav.value, { 
+  const showAnim = gsap.from(nav.value, {
     yPercent: -100,
     paused: true,
     duration: 0.2,
@@ -47,7 +99,21 @@ onMounted(() => {
       self.direction === -1 ? showAnim.play() : showAnim.reverse();
     }
   });
+
+  document.addEventListener('click', handleOutsideClick);
+
 });
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleOutsideClick);
+});
+
+
+const handleOutsideClick = (event) => {
+  if (!event.target.closest('.menu-dropdown') && isMenuOpen.value) {
+    isMenuOpen.value = false;
+  }
+};
 </script>
 
 
@@ -74,38 +140,24 @@ nav {
   background: lightblue;
 }
 
-/* Настройка тега А в меню */
-a.nav-link {
-  color: dimgrey !important;
-  text-decoration: none;
-  position: relative;
+/* Плавное появление меню */
+.slide-enter-active, .slide-leave-active {
+  transition: all 0.3s ease;
 }
-/* Тег А в активном састояние класс router-link-exact-active */
-a.router-link-exact-active.nav-link {
-  color: #ec4899 !important;
+.slide-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
 }
-a.router-link-exact-active.nav-link:after {
-  left: 0;
-  width: 100%;
-  position: relative;
+.slide-enter-to {
+  transform: translateY(0);
+  opacity: 1;
 }
-/* Настройка поведения Тег А при состояние псевдокласса :hover */
-a.nav-link:hover {
-  color: #ec4899 !important;
+.slide-leave-from {
+  transform: translateY(0);
+  opacity: 1;
 }
-a.nav-link:after {
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: #ec4899;
-  transition: width 0.4s ease 0s, left 0.4s ease 0s;
-  width: 0;
-}
-a.nav-link:hover:after {
-  width: 100%;
-  left: 0;
+.slide-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 </style>

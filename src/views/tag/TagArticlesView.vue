@@ -58,14 +58,14 @@
         <template v-else-if="noArticlesFound">
             <div>
                 <p class="text-center text-2xl">No articles available.</p>
-                <p class="text-center text-xl">
+                <div class="text-center mx-auto text-xl flex flex-wrap items-center justify-center">
                     My favorite tags:
                     <router-link to="/tag/nuxt" class="tag-link">#Nuxt</router-link>
                     <router-link to="/tag/vue" class="tag-link">#Vue</router-link>
                     <router-link to="/tag/javascript" class="tag-link">#JavaScript</router-link>
                     <router-link to="/tag/laravel" class="tag-link">#Laravel</router-link>
                     <router-link to="/tag/hacking" class="tag-link">#Hacking</router-link>
-                </p>
+                </div>
             </div>
         </template>
 
@@ -163,7 +163,10 @@ const initObserver = () => {
         console.warn('loadMoreRef is not defined. IntersectionObserver will not work.');
         return;
     }
-    if (stopObserver) stopObserver();
+    // Остановить предыдущий наблюдатель, если он существует
+    if (stopObserver) stopObserver.stop();  // Используем метод stop(), а не просто вызываем переменную как функцию
+
+    // Инициализация нового наблюдателя
     stopObserver = useIntersectionObserver(
         loadMoreRef,
         ([entry]) => {
@@ -184,11 +187,15 @@ onMounted(async () => {
 });
 
 watch(() => route.params.tagId, async (newTagId) => {
-    document.title = newTagId ? `Tag #${newTagId} Articles` : 'Articles';
-    resetState();
-    await fetchArticles();
-    await nextTick();
-    initObserver();
+    try {
+        document.title = newTagId ? `Tag #${newTagId} Articles` : 'Articles';
+        resetState();
+        await fetchArticles();
+        await nextTick();
+        initObserver();
+    } catch (err) {
+        console.error('Error in tagId watcher:', err);
+    }
 });
 </script>
 
