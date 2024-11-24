@@ -273,6 +273,9 @@ onMounted(async () => {
 .highlight__panel {
   display: none;
 }
+iframe {
+  width: 100%;
+}
 
 @media screen and (min-width: 380px) {
   pre {
