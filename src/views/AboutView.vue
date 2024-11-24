@@ -3,7 +3,7 @@
     <div class="container px-5 py-24 mx-auto flex flex-col">
       <div class="lg:w-5/6 mx-auto">
         <div class="hidden sm:block rounded-lg h-64 overflow-hidden">
-          <img alt="content" class="object-cover object-center h-full w-full"
+          <img alt="content" loading="lazy" class="object-cover object-center h-full w-full"
             src="https://res.cloudinary.com/poliweb/image/upload/c_fill,w_1200/v1640324519/HeaderPortfolio_bjo6uu.webp">
         </div>
         <div class="flex flex-col sm:flex-row mt-10">
@@ -12,7 +12,7 @@
               <div
                 class="w-40 h-40 rounded-lg sm:rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
                 <img src="https://res.cloudinary.com/poliweb/image/upload/c_fit,w_160/v1639893378/avatar_my_xrxg6d.webp"
-                  width="160" height="160" alt="Pavel Polistovskiy"
+                  width="160" height="160" alt="Pavel Polistovskiy" loading="lazy"
                   class="rounded-lg sm:rounded-full inline-flex items-center justify-center">
               </div>
               <div class="flex flex-col items-center text-center justify-center">

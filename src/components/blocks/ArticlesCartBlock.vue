@@ -10,12 +10,12 @@
                 },
             }">
                 <div class="relative overflow-hidden">
-                    <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
+                    <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title" loading="lazy"
                         class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
-                    <img v-else :src="article.social_image" :alt="article.title"
+                    <img v-else :src="article.social_image" :alt="article.title" loading="lazy"
                         class="lg:h-48 md:h-36 w-full object-cover object-center item-article__img transition duration-700 ease-in-out" />
                     <div class="absolute bottom-0 left-0 flex items-center gap-4">
-                        <img :src="article.user.profile_image_90" :alt="article.user.name"
+                        <img :src="article.user.profile_image_90" :alt="article.user.name" loading="lazy"
                             class="rounded-full w-10 h-10" />
                         <div class="bg-pink-600 px-2 py-1 text-white rounded btn-primary"><span class="">{{
                                 article.user.name }}</span></div>
