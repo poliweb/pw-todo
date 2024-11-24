@@ -82,12 +82,18 @@ const router = createRouter({
     { path: '/404', name: 'NotFound', component: NotFound, meta: { title: '404 - Page Not Found' } },
   ],
 
+  // Настраиваем поведение прокрутки
   scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
-    return { top: 0 }
+    // Если есть сохранённая позиция (например, при использовании кнопки "назад")
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      // Всегда прокручиваем в начало
+      return { top: 0 };
+    }
   },
-
 })
+
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title}`,
   next()
