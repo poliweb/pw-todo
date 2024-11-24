@@ -8,7 +8,7 @@
   </template>
 
   <section class="text-gray-600 body-font mt-[64px] lg:mt-[99px]">
-    <div class="container px-5 py-24 mx-auto flex flex-col">
+    <div class="container px-5 py-5 md:py-24 mx-auto flex flex-col">
       <div v-if="article" class="w-full mx-auto">
         <div class="rounded-lg overflow-hidden">
           <img v-if="article.cover_image" :src="article.cover_image" :alt="article.title"
