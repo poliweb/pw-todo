@@ -34,14 +34,25 @@
       <TagFilter class="w-full md:w-auto" />
 
       <!-- Burger Button -->
-      <button @click="toggleMenu" class="w-[34px] h-[40px] bg-pink-500 rounded flex flex-col items-center justify-center px-2">
-        <span v-for="i in 3" :key="i" class="w-[20px] h-[2px] bg-white mb-1"></span>
+      <button @click="toggleMenu"
+        class="w-[34px] h-[40px] bg-pink-500 rounded flex flex-col items-center justify-center gap-2 px-2 relative">
+        <!-- <span v-for="i in 3" :key="i" :class="['w-[20px] h-[2px] bg-white mb-1', { 'rotate-45': isMenuOpen && i === 1, 'opacity-0': isMenuOpen && i === 2, '-rotate-45': isMenuOpen && i === 3 }]"></span> -->
+        <!-- <span v-for="i in 3" :key="i" :class="['w-[20px] h-[2px] bg-white mb-1 transition duration-700 ease-in-out', { 'rotate-45 absolute': isMenuOpen && i === 1, 'opacity-0': isMenuOpen && i === 2, '-rotate-45 absolute': isMenuOpen && i === 3 }]"></span> -->
+        <span v-for="i in 3" :key="i" :class="['w-[20px] h-[2px] bg-white', {
+          'rotate-45 absolute transition-all duration-700 ease-in-out': isMenuOpen && i === 1,
+          'opacity-0 transition-all duration-300 ease-in-out': isMenuOpen && i === 2,
+          '-rotate-45 absolute transition-all duration-700 ease-in-out': isMenuOpen && i === 3,
+          'rotate-0 absolute ': !isMenuOpen && i === 1,
+          'opacity-100 ': !isMenuOpen && i === 2,
+          'rotate-0 absolute ': !isMenuOpen && i === 3
+        }]"></span>
       </button>
 
     </div>
-     <!-- Выпадающее меню -->
+    <!-- Выпадающее меню -->
     <transition name="slide">
-      <div v-if="isMenuOpen" @click.stop class="absolute top-full left-0 w-full bg-pink-100 shadow-lg p-4 z-50 lg:hidden">
+      <div v-if="isMenuOpen" @click.stop
+        class="absolute top-full left-0 w-full bg-pink-100 shadow-lg p-4 z-50 lg:hidden">
         <div class="flex flex-col sm:flex-row  gap-y-6">
           <NavRouterLink :onCloseMenu="toggleMenu" />
         </div>
@@ -141,21 +152,26 @@ nav {
 }
 
 /* Плавное появление меню */
-.slide-enter-active, .slide-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: all 0.3s ease;
 }
+
 .slide-enter-from {
   transform: translateY(-100%);
   opacity: 0;
 }
+
 .slide-enter-to {
   transform: translateY(0);
   opacity: 1;
 }
+
 .slide-leave-from {
   transform: translateY(0);
   opacity: 1;
 }
+
 .slide-leave-to {
   transform: translateY(-100%);
   opacity: 0;
