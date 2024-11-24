@@ -7,7 +7,7 @@
     </div>
   </template>
 
-  <section class="text-gray-600 body-font mt-[99px]">
+  <section class="text-gray-600 body-font mt-[64px] lg:mt-[99px]">
     <div class="container px-5 py-24 mx-auto flex flex-col">
       <div v-if="article" class="w-full mx-auto">
         <div class="rounded-lg overflow-hidden">

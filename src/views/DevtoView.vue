@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-pink-500 mt-[99px]">
+    <section class="bg-pink-500 mt-[64px] lg:mt-[99px]">
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-col text-white text-left w-full">
                 <h2 class="uppercase text-white text-left text-3xl font-bold mb-4">

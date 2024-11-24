@@ -1,5 +1,5 @@
 <template>
-  <section class="first bg-white text-gray-600 body-font mt-[99px]">
+  <section class="first bg-white text-gray-600 body-font mt-[64px] lg:mt-[99px]">
     <div class="container px-5 py-24 mx-auto flex flex-col">
       <div class="lg:w-5/6 mx-auto">
         <div class="hidden sm:block rounded-lg h-64 overflow-hidden">
