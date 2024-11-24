@@ -41,8 +41,8 @@
     </div>
      <!-- Выпадающее меню -->
     <transition name="slide">
-      <div v-if="isMenuOpen" @click.stop class="absolute top-full left-0 w-full bg-pink-100 shadow-lg p-4 z-50">
-        <div class="flex flex-col sm:flex-row  gap-y-2">
+      <div v-if="isMenuOpen" @click.stop class="absolute top-full left-0 w-full bg-pink-100 shadow-lg p-4 z-50 lg:hidden">
+        <div class="flex flex-col sm:flex-row  gap-y-4">
           <NavRouterLink :onCloseMenu="toggleMenu" />
         </div>
       </div>
