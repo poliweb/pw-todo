@@ -36,16 +36,17 @@
       <!-- Burger Button -->
       <button @click="toggleMenu"
         class="w-[34px] h-[40px] bg-pink-500 rounded flex flex-col items-center justify-center gap-2 px-2 relative">
-        <!-- <span v-for="i in 3" :key="i" :class="['w-[20px] h-[2px] bg-white mb-1', { 'rotate-45': isMenuOpen && i === 1, 'opacity-0': isMenuOpen && i === 2, '-rotate-45': isMenuOpen && i === 3 }]"></span> -->
-        <!-- <span v-for="i in 3" :key="i" :class="['w-[20px] h-[2px] bg-white mb-1 transition duration-700 ease-in-out', { 'rotate-45 absolute': isMenuOpen && i === 1, 'opacity-0': isMenuOpen && i === 2, '-rotate-45 absolute': isMenuOpen && i === 3 }]"></span> -->
-        <span v-for="i in 3" :key="i" :class="['w-[20px] h-[2px] bg-white', {
-          'rotate-45 absolute transition-all duration-700 ease-in-out': isMenuOpen && i === 1,
-          'opacity-0 transition-all duration-300 ease-in-out': isMenuOpen && i === 2,
-          '-rotate-45 absolute transition-all duration-700 ease-in-out': isMenuOpen && i === 3,
-          'rotate-0 absolute ': !isMenuOpen && i === 1,
-          'opacity-100 ': !isMenuOpen && i === 2,
-          'rotate-0 absolute ': !isMenuOpen && i === 3
-        }]"></span>
+        <span v-for="i in 3" :key="i" :class="[
+          'w-[20px] h-[2px] bg-white transition-all duration-300 ease-in-out',
+          {
+            'rotate-45 absolute top-[47%]': isMenuOpen && i === 1,
+            'opacity-0 element': isMenuOpen && i === 2,
+            '-rotate-45 absolute bottom-[47%]': isMenuOpen && i === 3,
+            'rotate-0 absolute top-3.5': !isMenuOpen && i === 1,
+            'elementOut': !isMenuOpen && i === 2,
+            'rotate-0 absolute bottom-3.5': !isMenuOpen && i === 3
+          }
+        ]"></span>
       </button>
 
     </div>
@@ -175,5 +176,46 @@ nav {
 .slide-leave-to {
   transform: translateY(-100%);
   opacity: 0;
+}
+
+/* Animation */
+@keyframes exampleAnimationIn {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(20px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(45px);
+    opacity: 0;
+  }
+}
+
+@keyframes exampleAnimationOut {
+  0% {
+    transform: translateX(45px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(20px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.element {
+  background-color: #fff;
+  animation: exampleAnimationIn 0.5s ease-in-out;
+}
+
+.elementOut {
+  background-color: #fff;
+  animation: exampleAnimationOut 0.5s ease-in-out;
 }
 </style>
