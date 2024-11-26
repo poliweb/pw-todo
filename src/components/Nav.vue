@@ -99,7 +99,7 @@ onMounted(() => {
   const showAnim = gsap.from(nav.value, {
     yPercent: -100,
     paused: true,
-    duration: 0.2,
+    duration: 0.5,
   }).progress(1);
 
   ScrollTrigger.create({
