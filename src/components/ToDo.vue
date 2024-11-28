@@ -1,62 +1,61 @@
 <template>
-  <div class="container mx-auto px-5 py-8 max-w-sm min-screen">
-    <h2 class="text-5xl mb-8">
-      <span class="text-dark-500">{{ title }}</span>
-      <span class="text-pink-600">{{ titleSpan }}</span>
-    </h2>
-    <div class="wrap">
-      <p>{{ todo }}</p>
-      <div class="flex justify-between mb-8">
-        <input v-model="todo" type="text" placeholder="Todo..." @keyup.enter="addTodo(id++)"
-          class="inputTodo placeholder:text-pink-600 focus:ring focus:ring-pink-200 focus:border-pink-500" />
-        <button @click="addTodo(id++)" class="btn">Add ToDo</button>
-      </div>
-      <section class="main" v-show="todos.length">
-        <TransitionGroup name="list" tag="div">
-          <div v-for="(todo, i) in filteredTodos" :key="todo.id" :class="{ completed: todo.completed }">
-            <div class="flex items-center justify-between mb-4">
-              <div class="text-gray-600">
-                <span class="text-pink-600 font-bold">{{ i + 1 }}.</span>
-                <label class="text-2xl md:text-sm" :class="{ linethrough: todo.isComplete }"
-                  @dblclick="removeTodo(i)">{{ todo.text }}
-                  <input v-model="todo.isComplete" type="checkbox"
-                    class="mx-2 text-green-600 border-0 rounded-md focus:ring-0 checkbox" />
-                </label>
-              </div>
-              <button @click="removeTodo(i)" class="btn" aria-label="Trash">
-                <span class="text-white">
-                  <IconTrash />
-                </span>
-              </button>
-            </div>
-          </div>
-        </TransitionGroup>
-
-        <hr />
-        <div class="text-gray-600">
-          <p>Task list {{ todos.length }}</p>
-          <p>Tasks not completed {{ remaining }}</p>
+    <div>
+      <h2 class="text-5xl mb-8">
+        <span class="text-dark-500">{{ title }}</span>
+        <span class="text-pink-600">{{ titleSpan }}</span>
+      </h2>
+      <div class="wrap">
+        <p>{{ todo }}</p>
+        <div class="flex justify-between mb-8">
+          <input v-model="todo" type="text" placeholder="Todo..." @keyup.enter="addTodo(id++)"
+            class="inputTodo placeholder:text-pink-600 focus:ring focus:ring-pink-200 focus:border-pink-500" />
+          <button @click="addTodo(id++)" class="btn">Add ToDo</button>
         </div>
-      </section>
-    </div>
-    <Transition name="list" tag="div">
-      <div v-if="todos.length === 0" class="text-gray-600 text-lg">
-        <p class="py-2">This amazing web application will help you quickly checklist your to-dos or purchases on your
-          smartphone or
-          computer. The application runs on PWA technology and can be installed locally as a web application on a
-          smartphone or computer.
-        </p>
-        <p class="py-2">
-          To compile the list and the application does not require an Internet connection and
-          cloud databases. The application saves all information in the Local Storage.
-        </p>
-        <p class="text-pink-600 ">
-          Use to your heart's content!<br /> PoliWeb is for you!
-        </p>
-      </div>
-    </Transition>
+        <section class="main" v-show="todos.length">
+          <TransitionGroup name="list" tag="div">
+            <div v-for="(todo, i) in filteredTodos" :key="todo.id" :class="{ completed: todo.completed }">
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-gray-600">
+                  <span class="text-pink-600 font-bold">{{ i + 1 }}.</span>
+                  <label class="text-2xl md:text-sm" :class="{ linethrough: todo.isComplete }"
+                    @dblclick="removeTodo(i)">{{ todo.text }}
+                    <input v-model="todo.isComplete" type="checkbox"
+                      class="mx-2 text-green-600 border-0 rounded-md focus:ring-0 checkbox" />
+                  </label>
+                </div>
+                <button @click="removeTodo(i)" class="btn" aria-label="Trash">
+                  <span class="text-white">
+                    <IconTrash />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </TransitionGroup>
 
-  </div>
+          <hr />
+          <div class="text-gray-600">
+            <p>Task list {{ todos.length }}</p>
+            <p>Tasks not completed {{ remaining }}</p>
+          </div>
+        </section>
+      </div>
+      <Transition name="list" tag="div">
+        <div v-if="todos.length === 0" class="text-gray-600 text-lg">
+          <p class="py-2">This amazing web application will help you quickly checklist your to-dos or purchases on your
+            smartphone or
+            computer. The application runs on PWA technology and can be installed locally as a web application on a
+            smartphone or computer.
+          </p>
+          <p class="py-2">
+            To compile the list and the application does not require an Internet connection and
+            cloud databases. The application saves all information in the Local Storage.
+          </p>
+          <p class="text-pink-600 ">
+            Use to your heart's content!<br /> PoliWeb is for you!
+          </p>
+        </div>
+      </Transition>
+    </div>
 </template>
 
 <script>
@@ -148,6 +147,7 @@ export default {
   text-decoration-color: #db2777;
   color: #acacac;
 }
+
 .checkbox {
   accent-color: #db2777;
 }
