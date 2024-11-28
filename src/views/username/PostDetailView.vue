@@ -110,6 +110,17 @@
             <div class="mb-4 text-lg">Publish Date: <span class="text-pink-500 font-bold">{{
               article.readable_publish_date }}</span></div>
             <div class="content" v-html="article.body_html" />
+
+            <!-- Comments Blok -->
+            <div class="w-full h-1 rounded bg-pink-500 my-24"></div>
+            <h3 class="text-3xl font-bold mb-8">Comments {{ article.comments_count }} total </h3>
+
+            <CommentsBlok />
+
+            <a :href="`https://dev.to/${user.username}/${article.slug}`" target="_blank" rel="nofollow noopener noreferer" class="btn-primary">
+                Add comment
+            </a>
+
           </div>
         </div>
       </div>
@@ -123,6 +134,7 @@ import IconDev from '@/components/icons/iconDev.vue'
 import IconWeb from '@/components/icons/iconWeb.vue'
 import IconGithub from '@/components/icons/IconGithub.vue'
 import IconTwiter from '@/components/icons/iconTwiter.vue'
+import CommentsBlok from '@/components/blocks/CommentsBlock.vue'
 
 const isLoading = ref(true)
 
@@ -273,6 +285,7 @@ onMounted(async () => {
 .highlight__panel {
   display: none;
 }
+
 iframe {
   width: 100%;
 }
