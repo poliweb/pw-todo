@@ -18,7 +18,7 @@
             </div>
         </template>
         <div v-else-if="errorMessage">
-            <p>Error: {{ errorMessage }} There may be no internet connection!</p>
+            <p class="text-center text-lg  md:text-3xl text-purple-700">Error: {{ errorMessage }}! There may be no internet connection!</p>
         </div>
         <!-- Список статей -->
         <template v-if="articles.length">
