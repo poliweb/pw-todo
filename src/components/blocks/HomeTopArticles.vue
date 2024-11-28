@@ -2,7 +2,10 @@
     <div class="relative">
         <div class="flex flex-col text-center w-full mb-20">
             <h1 class="sm:text-5xl text-2xl font-medium title-font mb-4 text-gray-900">
-                Top Articles Tagged with <span class="text-pink-600">#Vue</span>
+                Top Articles Tagged with 
+                <span class="text-pink-600">
+                    <router-link to="/tag/vue">#Vue</router-link>
+                </span>
             </h1>
             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
                 A curated list of the most insightful and useful articles about Vue.js from the Dev.to community
