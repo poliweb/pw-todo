@@ -12,7 +12,7 @@
             </p>
         </div>
         <template v-if="isLoading">
-            <div class="flex flex-col items-center justify-center absolute left-[40%] top-24 right-[40%] bg-white p-10 transition duration-300 ease-in-out">
+            <div class="flex flex-col items-center justify-center absolute left-[35%] top-24 right-[35%] bg-white p-10 transition duration-300 ease-in-out">
                 <div class="loader"></div>
                 <p class="text-lg  text-pink-700 z-36">Loading articles...</p>
             </div>
