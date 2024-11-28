@@ -18,7 +18,7 @@
             </div>
         </template>
         <div v-else-if="errorMessage">
-            <p>Ошибка: {{ errorMessage }}</p>
+            <p>Error: {{ errorMessage }} There may be no internet connection!</p>
         </div>
         <!-- Список статей -->
         <template v-if="articles.length">
@@ -86,7 +86,7 @@ const fetchArticles = async () => {
         const response = await fetch(apiUrl)
 
         if (!response.ok) {
-            throw new Error(`Ошибка загрузки данных: ${response.statusText}`)
+            throw new Error(`Data loading error: ${response.statusText}`)
         }
 
         const data = await response.json()
@@ -95,7 +95,7 @@ const fetchArticles = async () => {
         articles.value = data
         // console.log(articles.value)
     } catch (error) {
-        console.error('Произошла ошибка:', error)
+        console.error('An error has occurred:', error)
         errorMessage.value = error.message
     } finally {
         isLoading.value = false
