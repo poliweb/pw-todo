@@ -3,7 +3,7 @@
         <div class="flex flex-col text-center w-full mb-20">
             <h1 class="sm:text-5xl text-2xl font-medium title-font mb-4 text-gray-900">
                 Top Articles Tagged with 
-                <span class="text-pink-600">
+                <span class="text-pink-500 hover:text-pink-700 translation duration-300 ease-in-out">
                     <router-link to="/tag/vue">#Vue</router-link>
                 </span>
             </h1>
