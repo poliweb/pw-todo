@@ -1,5 +1,13 @@
 <template>
-    <div>
+    <div class="relative">
+        <div class="flex flex-col text-center w-full mb-20">
+            <h1 class="sm:text-5xl text-2xl font-medium title-font mb-4 text-gray-900">
+                Top Articles Tagged with <span class="text-pink-600">#Vue</span>
+            </h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+                A curated list of the most insightful and useful articles about Vue.js from the Dev.to community
+            </p>
+        </div>
         <template v-if="isLoading">
             <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out">
                 <div class="loader"></div>
@@ -12,13 +20,13 @@
         <!-- Список статей -->
         <template v-if="articles.length">
             <!-- Фильтр -->
-            <div class="filter">
+            <div class="flex flex-col md:flex-row ittems-start md:items-center md:justify-between gap-x-4">
                 <!-- Период (top) -->
                 <div class="mb-4 flex flex-col md:flex-row ittems-start md:items-center gap-x-4">
                     <legend>Articles From (days):</legend>
                     <div class="flex gap-2">
                         <label v-for="value in topOptions" :key="'top-' + value">
-                            <input type="radio" :value="value" v-model="top" class="accent-pink-500"  />
+                            <input type="radio" :value="value" v-model="top" class="accent-pink-500" />
                             {{ value }}
                         </label>
                     </div>
@@ -29,7 +37,7 @@
                     <legend>Articles Per Page:</legend>
                     <div class="flex gap-2">
                         <label v-for="value in perPageOptions" :key="'per-page-' + value">
-                            <input type="radio" :value="value" v-model="perPage" class="accent-pink-500"  />
+                            <input type="radio" :value="value" v-model="perPage" class="accent-pink-500" />
                             {{ value }}
                         </label>
                     </div>
