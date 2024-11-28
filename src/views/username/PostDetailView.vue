@@ -104,7 +104,7 @@
             </div>
           </div>
           <div
-            class="order-1 md:order-2 w-full md:w-2/3 md:pl-8 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
+            class="order-1 md:order-2 w-full md:w-2/3 md:pl-8 mb-24 md:mb-0 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
             <!-- Title -->
             <h2 class="text-2xl font-bold md:text-4xl my-8">{{ article.title }}</h2>
             <div class="mb-4 text-lg">Publish Date: <span class="text-pink-500 font-bold">{{
