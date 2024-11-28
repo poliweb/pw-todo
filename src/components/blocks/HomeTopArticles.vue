@@ -12,9 +12,9 @@
             </p>
         </div>
         <template v-if="isLoading">
-            <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out">
+            <div class="flex flex-col items-center justify-center transition duration-300 ease-in-out absolute left-[40%] top-24 right-[40%]">
                 <div class="loader"></div>
-                <p>Loading articles...</p>
+                <p class="text-lg  text-pink-700 z-36">Loading articles...</p>
             </div>
         </template>
         <div v-else-if="errorMessage">
