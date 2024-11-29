@@ -107,8 +107,29 @@
             class="order-1 md:order-2 w-full md:w-2/3 md:pl-8 mb-24 md:mb-0 md:py-8 md:border-l border-gray-200 md:border-t-0 border-t mt-4 pt-4 md:mt-0 text-left">
             <!-- Title -->
             <h2 class="text-2xl font-bold md:text-4xl my-8">{{ article.title }}</h2>
-            <div class="mb-4 text-lg">Publish Date: <span class="text-pink-500 font-bold">{{
-              article.readable_publish_date }}</span></div>
+            <div class="flex flex-row items-center gap-4 mb-4">
+              <!-- Date -->
+              <div class="text-sm">
+                Publish Date: <span class="text-pink-500 font-bold">{{ article.readable_publish_date }}</span>
+              </div>
+
+              <!-- Reactions Count -->
+              <span
+                class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <IconsFavoriteBase v-if="article.positive_reactions_count > 0" class="w-4 h-4 mr-1 text-pink-500" />
+                <IconsFavorite v-else class="w-4 h-4 mr-1" />
+                {{ article.positive_reactions_count }}
+              </span>
+
+              <!-- Comments -->
+              <span
+                class="text-gray-400 inline-flex items-center leading-none text-sm mr-3  pr-3 py-1 border-r-2 border-gray-200">
+                <IconChatBase v-if="article.comments_count > 0" class="w-4 h-4 mr-1 text-pink-500" />
+                <iconChat v-else class="w-4 h-4 mr-1" />
+                {{ article.comments_count }}
+              </span>
+            </div>
+
             <div class="content" v-html="article.body_html" />
 
             <!-- Comments Blok -->
@@ -117,8 +138,9 @@
 
             <CommentsBlok />
 
-            <a :href="`https://dev.to/${user.username}/${article.slug}`" target="_blank" rel="nofollow noopener noreferer" class="btn-primary">
-                Add comment
+            <a :href="`https://dev.to/${user.username}/${article.slug}`" target="_blank"
+              rel="nofollow noopener noreferer" class="btn-primary">
+              Add comment
             </a>
 
           </div>
@@ -134,6 +156,10 @@ import IconDev from '@/components/icons/iconDev.vue'
 import IconWeb from '@/components/icons/iconWeb.vue'
 import IconGithub from '@/components/icons/IconGithub.vue'
 import IconTwiter from '@/components/icons/iconTwiter.vue'
+import IconsFavorite from "@/components/icons/Favorite.vue";
+import IconsFavoriteBase from "@/components/icons/favoriteBase.vue";
+import iconChat from "@/components/icons/iconChat.vue";
+import IconChatBase from '@/components/icons/iconChatBase.vue';
 import CommentsBlok from '@/components/blocks/CommentsBlock.vue'
 
 const isLoading = ref(true)
