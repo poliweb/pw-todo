@@ -230,6 +230,7 @@ onMounted(async () => {
 
 .content p {
   margin-bottom: 1rem;
+  font-size: 1rem; 
   line-height: 1.4;
 }
 

@@ -40,7 +40,7 @@
         }">
             <h2 class="card-title ">{{ article.title }}</h2>
         </router-link>
-        <p class="card-description font-light">{{ article.description }}</p>
+        <p class="card-description font-normal">{{ article.description }}</p>
         <!-- Блок информации -->
         <div class="flex items-center flex-wrap">
 
@@ -113,7 +113,7 @@ const props = defineProps({
 }
 
 .card-description {
-    @apply text-gray-600 mb-2;
+    @apply text-gray-600 mb-2 text-base;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
