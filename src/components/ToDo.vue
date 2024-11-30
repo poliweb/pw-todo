@@ -9,7 +9,7 @@
         <div class="flex justify-between mb-8">
           <input v-model="todo" type="text" placeholder="Todo..." @keyup.enter="addTodo(id++)"
             class="inputTodo placeholder:text-pink-600 focus:ring focus:ring-pink-200 focus:border-pink-500" />
-          <button @click="addTodo(id++)" class="btn">Add ToDo</button>
+          <button @click="addTodo(id++)" class="btn-primary">Add ToDo</button>
         </div>
         <section class="main" v-show="todos.length">
           <TransitionGroup name="list" tag="div">
@@ -23,7 +23,7 @@
                       class="mx-2 text-green-600 border-0 rounded-md focus:ring-0 checkbox" />
                   </label>
                 </div>
-                <button @click="removeTodo(i)" class="btn" aria-label="Trash">
+                <button @click="removeTodo(i)" class="btn-primary" aria-label="Trash">
                   <span class="text-white">
                     <IconTrash />
                   </span>
