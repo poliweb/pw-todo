@@ -13,7 +13,7 @@
         </div>
     </section>
     <section>
-        <div class="container px-5 py-24 mx-auto">
+        <div class="container px-5 pt-12 pb-24 mx-auto">
 
             <!-- Прелоудер -->
             <template v-if="isLoading">
@@ -34,13 +34,17 @@
 
 
             <template v-if="articles && articles.length">
+                <!-- Кнопка переключения -->
+                <button @click="toggleArticles" class="btn-primary mb-4">
+                    {{ topArticles === '' ? 'Show Top' : 'Show Recent' }}
+                </button>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
                     <div v-for="article in articles" :key="article.id" class="">
                         <articles-cart-block :article="article" />
                     </div>
                 </div>
             </template>
-            
+
             <!-- Сообщение о пустом списке продуктов -->
             <template v-else>
                 <p class="text-center">No articles available.</p>
@@ -57,8 +61,10 @@
     </section>
 </template>
 
+
+
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted, nextTick, watch } from 'vue';
 import { useIntersectionObserver } from '@vueuse/core';
 import ArticlesCartBlock from '@/components/blocks/ArticlesCartBlock.vue';
 
@@ -69,24 +75,39 @@ const currentPage = ref(1);
 const loadMoreRef = ref(null);
 const hasMore = ref(true);
 const MAX_PAGES = 12;
+const topArticles = ref(''); // Начальное значение — без фильтра
 
+// Метод для переключения значения topArticles
+const toggleArticles = () => {
+    topArticles.value = topArticles.value === '' ? '&top=365' : '';
+    // console.log(`Toggled to: ${topArticles.value}`);
+};
 
+// Метод для загрузки статей
 const fetchArticles = async () => {
-    if (isLoading.value || !hasMore.value) return;
+    if (isLoading.value) return;
 
     isLoading.value = true;
     errorMessage.value = '';
+
     try {
-        // console.log(`Fetching page: ${currentPage.value}`);
-        const response = await fetch(`https://dev.to/api/articles?tag=nuxt&state=rising&page=${currentPage.value}`);
+        // Формируем URL для API-запроса
+        const url = `https://dev.to/api/articles?tag=nuxt${topArticles.value}&state=rising&page=${currentPage.value}`;
+        // console.log(`Fetching: ${url}`);
+
+        const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch articles');
 
         const newArticles = await response.json();
 
         if (newArticles.length === 0) {
-            hasMore.value = false;
+            hasMore.value = false; // Больше нет статей
         } else {
-            articles.value.push(...newArticles);
+            if (currentPage.value === 1) {
+                articles.value = newArticles; // Для первой страницы заменяем список
+            } else {
+                articles.value.push(...newArticles); // Для последующих страниц добавляем статьи
+            }
         }
     } catch (error) {
         errorMessage.value = error.message;
@@ -95,6 +116,15 @@ const fetchArticles = async () => {
     }
 };
 
+// Метод для сброса статей при изменении фильтра
+const resetArticles = () => {
+    articles.value = [];
+    currentPage.value = 1;
+    hasMore.value = true;
+    fetchArticles(); // Перезагружаем статьи
+};
+
+// Метод для загрузки дополнительных статей
 const loadMoreArticles = () => {
     if (hasMore.value && currentPage.value < MAX_PAGES) {
         currentPage.value += 1;
@@ -112,14 +142,25 @@ onMounted(async () => {
     }
 
     // Используем useIntersectionObserver для ленивой загрузки
-    useIntersectionObserver(loadMoreRef, ([entry]) => {
-        if (entry.isIntersecting && !isLoading.value && hasMore.value) {
-            loadMoreArticles();
+    useIntersectionObserver(
+        loadMoreRef,
+        ([entry]) => {
+            if (entry.isIntersecting && !isLoading.value && hasMore.value) {
+                loadMoreArticles();
+            }
+        },
+        {
+            rootMargin: '300px', // Загрузить заранее, когда элемент находится на 300px ниже видимой области
         }
-    }, {
-        rootMargin: '300px', // Загрузить заранее, когда элемент находится на 200px ниже видимой области
-    });
+    );
+});
+
+// Следим за изменением фильтров
+watch(topArticles, () => {
+    resetArticles(); // Сбрасываем статьи при переключении фильтра
 });
 </script>
 
-<style lang="scss" scoped></style>
+
+
+<style scoped></style>
