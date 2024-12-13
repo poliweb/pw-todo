@@ -120,7 +120,7 @@ const hasTagId = computed(() => {
 // Метод для переключения значения topArticles
 const toggleArticles = () => {
     topArticles.value = topArticles.value === '' ? '&top=365' : '';
-    console.log(`Toggled to: ${topArticles.value}`);
+    // console.log(`Toggled to: ${topArticles.value}`);
 };
 
 const fetchArticles = async () => {
