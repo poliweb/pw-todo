@@ -28,7 +28,8 @@
                     <IconDev class="w-6 h-6 text-white mt-1" />
                 </div>
                 <p class="text-white w-full md:w-1/3 mt-4">
-                    Browse our collection of articles on various topics related to IT technologies. Dive in and explore something new!
+                    Browse our collection of articles on various topics related to IT technologies. Dive in and explore
+                    something new!
                 </p>
             </template>
         </div>
@@ -38,6 +39,10 @@
 
         <!-- Список статей -->
         <template v-if="articles.length">
+            <!-- Кнопка переключения -->
+            <button @click="toggleArticles" class="btn-primary mb-4">
+                {{ topArticles === '' ? 'Show Top' : 'Show Recent' }}
+            </button>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div v-for="article in articles" :key="article.id">
                     <articles-cart-block :article="article" />
@@ -95,6 +100,7 @@ const currentPage = ref(1);
 const loadMoreRef = ref(null);
 const hasMore = ref(true);
 const MAX_PAGES = 12;
+const topArticles = ref('&top=365'); // Начальное значение — без фильтра
 
 defineProps({
     tagId: {
@@ -111,6 +117,12 @@ const hasTagId = computed(() => {
     return tagId && tagId.trim().length > 0;
 });
 
+// Метод для переключения значения topArticles
+const toggleArticles = () => {
+    topArticles.value = topArticles.value === '' ? '&top=365' : '';
+    console.log(`Toggled to: ${topArticles.value}`);
+};
+
 const fetchArticles = async () => {
     const tagId = route.params.tagId;
     if (!tagId || tagId.trim().length === 0 || isLoading.value || !hasMore.value) return;
@@ -120,7 +132,7 @@ const fetchArticles = async () => {
     noArticlesFound.value = false;
 
     try {
-        const response = await fetch(`https://dev.to/api/articles?tag=${tagId}&top=365&page=${currentPage.value}`);
+        const response = await fetch(`https://dev.to/api/articles?tag=${tagId}${topArticles.value}&page=${currentPage.value}`);
         if (!response.ok) throw new Error('Failed to fetch articles');
 
         const newArticles = await response.json();
@@ -156,6 +168,13 @@ const resetState = () => {
     errorMessage.value = '';
     noArticlesFound.value = false;
     isLoading.value = false;
+};
+
+const resetArticles = () => {
+    articles.value = [];
+    currentPage.value = 1;
+    hasMore.value = true;
+    fetchArticles(); // Перезагружаем статьи
 };
 
 const initObserver = () => {
@@ -197,6 +216,13 @@ watch(() => route.params.tagId, async (newTagId) => {
         console.error('Error in tagId watcher:', err);
     }
 });
+
+// Следим за изменением фильтров
+watch(topArticles, () => {
+    resetArticles(); // Сбрасываем статьи при переключении фильтра
+});
+
+
 </script>
 
 
